@@ -1,20 +1,12 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
+import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>RAYMOD</title>
-        <meta name="description" content="ray portfolio stuffs" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={styles.main}>
         <h1>RAYMOD!!!</h1>
+        <Link href="/upload">admin stuff</Link>
       </main>
     </>
   )
