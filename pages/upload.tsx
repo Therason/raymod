@@ -10,16 +10,15 @@ export default function Upload() {
   }
 
   const handleSubmit = async () => {
-    console.log('heyyy :)')
-    console.log(image)
-
     const form = new FormData()
     form.append('image', image as Blob)
 
+    // uploads are forbidden through localhost for some reason...
+    // this also should not be client side...
     const res = await fetch('https://api.imgur.com/3/image', {
       method: 'POST',
       headers: {
-        'Authorization': `Client-ID ${process.env.NEXT_PUBLIC_IMGUR}`
+        'Authorization': `Client-ID ${process.env.NEXT_PUBLIC_IMGUR_CLIENT}`
       },
       body: form
     })
