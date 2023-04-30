@@ -9,9 +9,22 @@ export default function Upload() {
     setImage(selectedFiles?.[0])
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log('heyyy :)')
     console.log(image)
+
+    const form = new FormData()
+    form.append('image', image as Blob)
+
+    const res = await fetch('https://api.imgur.com/3/image', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Client-ID ${process.env.NEXT_PUBLIC_IMGUR}`
+      },
+      body: form
+    })
+    const data = await res.json()
+    console.log(data)
   }
 
   return (
