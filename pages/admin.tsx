@@ -24,13 +24,14 @@ export default function Upload() {
   return (
     <>
       <main className={`${styles.main}`}>
-        <h1>Upload :D</h1>
+        <h1>Admin Stuff :D</h1>
         <div>
           <label>
             <input type="file" accept="image/*" onChange={selectImage} />
           </label>
           <button onClick={handleSubmit}>submit!!</button>
         </div>
+        <div className="gallery"></div>
       </main>
     </>
   )
