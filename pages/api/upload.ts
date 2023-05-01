@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
+//import { Blob } from "buffer";
+import { readFileSync } from "fs";
 
 type Data = {};
 
@@ -32,15 +34,17 @@ export default async function handler(
     return;
   }
 
-  // const form = formidable({ multiples: true });
-  // form.parse(req, (err, fields, files) => {
-  //   if (err) {
-  //     res.status(400).json({ message: "form error" });
-  //     return;
-  //   }
-
-  //   console.log(files);
-  //   res.status(200).json({ message: "hi" });
-  // });
-  res.status(200).json({ message: "hi" });
+  const buffer = readFileSync(data.files.image.filepath);
+  const blob = new Blob([buffer]);
+  const imgur = new FormData();
+  imgur.append("image", blob);
+  const imgurRes = await fetch("https://api.imgur.com/3/image", {
+    method: "POST",
+    headers: {
+      Authorization: `Client-ID ${process.env.NEXT_PUBLIC_IMGUR_CLIENT}`,
+    },
+    body: imgur,
+  });
+  const imgurData = await imgurRes.json();
+  res.status(200).json({ message: imgurData });
 }

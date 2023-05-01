@@ -10,6 +10,7 @@ export default function Upload() {
   }
 
   const handleSubmit = async () => {
+    console.log(image)
     const form = new FormData()
     form.append('image', image as Blob)
 
