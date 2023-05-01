@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 import { readFileSync } from "fs";
+import connect from "@/lib/db";
 
 type Data = {};
 
@@ -39,6 +40,7 @@ export default async function handler(
   const imgur = new FormData();
   imgur.append("image", blob);
 
+  // post image onto imgur
   const imgurRes = await fetch("https://api.imgur.com/3/image", {
     method: "POST",
     headers: {
@@ -47,5 +49,20 @@ export default async function handler(
     body: imgur,
   });
   const imgurData = await imgurRes.json();
-  res.status(200).json({ message: imgurData });
+  if (!imgurData.success || imgurData.status !== 200) {
+    // too lazy to look up the right code
+    res.status(400).json({ message: "imgur error" });
+    return;
+  }
+
+  // save URL to DB
+  const conn = await connect();
+  const db = conn.db();
+  const status = await db.collection("posts").insertOne({
+    url: imgurData.data.url,
+    description: "placeholder description",
+  });
+  conn.close();
+
+  res.status(200).json({ message: status });
 }
