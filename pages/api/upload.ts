@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
-//import { Blob } from "buffer";
 import { readFileSync } from "fs";
 
 type Data = {};
@@ -34,14 +33,16 @@ export default async function handler(
     return;
   }
 
+  // re-create the form data
   const buffer = readFileSync(data.files.image.filepath);
   const blob = new Blob([buffer]);
   const imgur = new FormData();
   imgur.append("image", blob);
+
   const imgurRes = await fetch("https://api.imgur.com/3/image", {
     method: "POST",
     headers: {
-      Authorization: `Client-ID ${process.env.NEXT_PUBLIC_IMGUR_CLIENT}`,
+      Authorization: `Client-ID ${process.env.IMGUR_CLIENT}`,
     },
     body: imgur,
   });
