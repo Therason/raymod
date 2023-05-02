@@ -32,6 +32,5 @@ export async function getServerSideProps() {
     }
   });
   conn.close()
-  console.log(images)
   return { props: { images }}
 }
