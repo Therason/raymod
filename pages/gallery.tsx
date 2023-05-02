@@ -1,12 +1,20 @@
-import connect from "@/lib/db"
-import { useEffect } from "react";
+import connect from '@/lib/db'
+import { useEffect } from 'react'
+import styles from '@/styles/Gallery.module.css'
+import Image from 'next/image'
 
+// TODO: better typing :(
 export default function Gallery({ images }: any) {
-  useEffect(() => console.log(images), [])
   return (
     <>
-      <main>
-
+      <main className={styles.main}>
+        {images.map((image: any) => {
+          return (
+            <div key={image._id} className={styles.image_container}>
+              <Image src={image.url} alt={image.description} fill={true} />
+            </div>
+          )
+        })}
       </main>
     </>
   )

@@ -7,6 +7,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1>RAYMOD!!!</h1>
         <Link href="/admin">admin stuff</Link>
+        <Link href="/gallery">gallery</Link>
       </main>
     </>
   )

@@ -56,10 +56,11 @@ export default async function handler(
   }
 
   // save URL to DB
+  // TODO: count documents within DB to establish gallery order that can be rearranged
   const conn = await connect();
   const db = conn.db();
   const status = await db.collection("posts").insertOne({
-    url: imgurData.data.url,
+    url: imgurData.data.link,
     description: "placeholder description",
   });
   conn.close();
