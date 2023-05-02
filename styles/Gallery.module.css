@@ -1,16 +1,26 @@
 .main {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 
-.image_container {
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.image {
   width: 400px;
   height: 400px;
   position: relative;
 }
 
-.image_container > img {
+.image > img {
   object-fit: contain;
 }
