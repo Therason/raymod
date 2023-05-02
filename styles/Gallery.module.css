@@ -1,9 +1,15 @@
 .main {
   display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .image_container {
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   position: relative;
+}
+
+.image_container > img {
+  object-fit: contain;
 }

@@ -11,7 +11,7 @@ export default function Gallery({ images }: any) {
         {images.map((image: any) => {
           return (
             <div key={image._id} className={styles.image_container}>
-              <Image src={image.url} alt={image.description} fill={true} />
+              <Image src={image.url} alt={image.description} fill />
             </div>
           )
         })}
