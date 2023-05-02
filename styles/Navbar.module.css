@@ -1,0 +1,10 @@
+.container {
+  display: inline-flex;
+  gap: 2rem;
+  padding: 0.5rem 2rem;
+}
+
+.container > a {
+  font-size: 2rem;
+  font-weight: bold;
+}
