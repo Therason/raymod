@@ -2,11 +2,13 @@ import connect from '@/lib/db'
 import { useEffect } from 'react'
 import styles from '@/styles/Gallery.module.css'
 import Image from 'next/image'
+import Navbar from '@/components/navbar'
 
 // TODO: better typing :(
 export default function Gallery({ images }: any) {
   return (
     <>
+      <Navbar />
       <main className={styles.main}>
         <div className={styles.container}>
           {images.map((image: any) => {

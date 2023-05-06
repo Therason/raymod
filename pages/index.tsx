@@ -8,7 +8,7 @@ export default function Home() {
         <h1>RAYMOD!!!</h1>
         <Link href="/admin">admin stuff</Link>
         <Link href="/gallery">gallery</Link>
-        <Link href="/aboout">about</Link>
+        <Link href="/about">about</Link>
       </main>
     </>
   )
