@@ -5,10 +5,15 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        <h1>RAYMOD!!!</h1>
-        <Link href="/admin">admin stuff</Link>
-        <Link href="/gallery">gallery</Link>
-        <Link href="/about">about</Link>
+        <span className={styles.bar}></span>
+        <span className={styles.artsy}></span>
+        <h1 className={styles.header}>RAY.MODULE</h1>
+        <h2 className={styles.subheader}>artist//animator</h2>
+        <div className={styles.links}>
+          <Link href="/admin">admin stuff</Link>
+          <Link href="/gallery">gallery</Link>
+          <Link href="/about">about</Link>
+        </div>
       </main>
     </>
   )
