@@ -1,6 +1,5 @@
 import styles from '@/styles/Upload.module.css'
 import { useState } from 'react'
-import Navbar from '@/components/navbar'
 
 export default function Upload() {
   const [ image, setImage ] = useState<File>()
@@ -24,7 +23,6 @@ export default function Upload() {
 
   return (
     <>
-      <Navbar />
       <main className={`${styles.main}`}>
         <h1>Admin Stuff :D</h1>
         <div>
