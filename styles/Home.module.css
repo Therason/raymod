@@ -1,9 +1,6 @@
 .main {
   padding: 4rem;
-  /* height: 90vh;
-  overflow-y: scroll; */
   margin: 5vh 2rem;
-  /* background: #fff1e8; */
   position: relative;
 }
 
@@ -19,4 +16,23 @@
 .content {
   font-size: 2vw;
   display: flex;
+}
+
+@media(max-width: 800px) {
+  .main {
+    padding: 2rem;
+    margin: 2vh 1rem;
+  }
+
+  .header, .subheader {
+    text-align: center;
+  }
+
+  .content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2rem;
+    align-items: center;
+  }
 }
