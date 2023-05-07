@@ -20,6 +20,14 @@ a:hover {
 }
 
 body {
-  background: #665544;
+  /* background: #665544; */
+  background: #fff1e8;
   color: #46494d;
+}
+
+/* retro border thing */
+.border {
+  border: 3px solid;
+  border-top-color: #fff1e8;
+  border-left-color: #fff1e8;
 }

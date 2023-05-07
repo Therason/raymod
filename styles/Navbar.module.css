@@ -2,9 +2,16 @@
   display: inline-flex;
   gap: 2rem;
   padding: 0.5rem 2rem;
+  background: #302209;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #fff1e8;
+  padding: 0.5rem 4rem;
 }
 
-.container > a {
+/* .container > a {
   font-size: 2rem;
   font-weight: bold;
-}
+} */

@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={bender.className}>
-        {/* <Navbar /> */}
+        <Navbar />
         <Component className={bender.className} {...pageProps} />
       </main>
     </>
