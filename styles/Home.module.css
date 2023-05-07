@@ -7,16 +7,6 @@
   position: relative;
 }
 
-/* .bar {
-  background: #302209;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: #fff1e8;
-  padding: 0.5rem 4rem;
-} */
-
 .header {
   font-size: 10vw;
 }
@@ -28,19 +18,25 @@
 
 .content {
   font-size: 2vw;
-}
-
-.links {
-  margin-top: 100px;
   display: flex;
-  flex-direction: column;
 }
 
-.artsy {
-  background: #F25757;
-  width: 30vw;
-  height: 30vw;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.imagecontainer {
+  background: #b18e6c;
+  position: relative;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+.bar {
+  width: 100%;
+  background: #302209;
+  display: block;
+  padding: 0 1rem;
+}
+
+.imagecontainer > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

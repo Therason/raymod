@@ -28,6 +28,6 @@ body {
 /* retro border thing */
 .border {
   border: 3px solid;
-  border-top-color: #fff1e8;
-  border-left-color: #fff1e8;
+  border-top-color: white;
+  border-left-color: white;
 }
