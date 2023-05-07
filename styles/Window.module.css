@@ -1,0 +1,17 @@
+.container {
+  background: #b18e6c;
+  position: relative;
+}
+
+.container > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bar {
+  width: 100%;
+  background: #302209;
+  display: block;
+  padding: 0 1rem;
+}
