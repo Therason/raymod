@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import styles from '@/styles/AdminGallery.module.css'
-import Image from 'next/image'
 import Window from './window'
 
 export default function AdminGallery() {
@@ -18,11 +17,21 @@ export default function AdminGallery() {
       <div className={styles.container}>
         {images.map((image: any) => {
           return (
-            // <div key={image._id} className={styles.image}>
-            //   <Image src={image.url} alt={image.alt} fill />
-            // </div>
             <Window key={image._id} src={image.url} alt={image.alt} size="250px" handleClick={() => {
-              console.log('ID:', image._id)
+              fetch('/api/deleteImage', {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: image._id }),
+              })
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data)
+                  const filtered = images.filter((i: any) => i._id !== image._id)
+                  setImages(filtered)
+                })
+                .catch(e => console.error(e))
             }}/>
           )
         })}

@@ -12,7 +12,7 @@ export default function Gallery({ images }: any) {
           {images.map((image: any) => {
             return (
               <div key={image._id} className={styles.image}>
-                <Image src={image.url} alt={image.alt} fill />
+                <Image src={image.url} alt={image.alt || ''} fill />
                 <p>{image.description}</p>
               </div>
             )
