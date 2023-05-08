@@ -16,7 +16,7 @@ export default function Gallery({ images }: any) {
               //   <Image src={image.url} alt={image.alt || ''} fill />
               //   <p>{image.description}</p>
               // </div>
-              <BigWindow image={image} />
+              <BigWindow image={image} key={image._id}/>
             )
           })}
         </div>
