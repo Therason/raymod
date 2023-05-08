@@ -2,6 +2,7 @@ import connect from '@/lib/db'
 import { useEffect } from 'react'
 import styles from '@/styles/Gallery.module.css'
 import Image from 'next/image'
+import BigWindow from '@/components/bigWindow'
 
 // TODO: better typing :(
 export default function Gallery({ images }: any) {
@@ -11,10 +12,11 @@ export default function Gallery({ images }: any) {
         <div className={styles.container}>
           {images.map((image: any) => {
             return (
-              <div key={image._id} className={styles.image}>
-                <Image src={image.url} alt={image.alt || ''} fill />
-                <p>{image.description}</p>
-              </div>
+              // <div key={image._id} className={styles.image}>
+              //   <Image src={image.url} alt={image.alt || ''} fill />
+              //   <p>{image.description}</p>
+              // </div>
+              <BigWindow image={image} />
             )
           })}
         </div>
