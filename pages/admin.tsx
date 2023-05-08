@@ -1,5 +1,6 @@
 import styles from '@/styles/Upload.module.css'
 import { useState } from 'react'
+import AdminGallery from '@/components/adminGallery'
 
 export default function Upload() {
   // upload form state
@@ -21,6 +22,7 @@ export default function Upload() {
     const form = new FormData()
     form.append('image', image as Blob)
     form.append('description', description)
+    form.append('alt', alt)
 
     const res = await fetch('/api/upload', {
       method: 'POST',
@@ -52,11 +54,7 @@ export default function Upload() {
         }
 
         {/* gallery config */}
-        {gallery && 
-          <div className={styles.gallery}>
-
-          </div>
-        }
+        {gallery && <AdminGallery /> }
       </main>
     </>
   )
