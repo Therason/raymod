@@ -31,6 +31,8 @@ export default function Upload() {
     const data = await res.json()
     console.log(data)
     setUploaded(true)
+    setDescription('')
+    setAlt('')
   }
 
   return (
@@ -38,18 +40,20 @@ export default function Upload() {
       <main className={`${styles.main}`}>
         <h1>Admin Stuff :D</h1>
         {/* UI switcher */}
-        <button onClick={() => setGallery(!gallery)}>{gallery ? 'upload...' : 'gallery...'}</button>
+        <h3 onClick={() => setGallery(!gallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{gallery ? 'upload new image...' : 'edit gallery...'}</h3>
 
         {/* file upload */}
         {!gallery &&      
           <div className={styles.upload}>
-            <label>
-              <input type="file" accept="image/*" onChange={selectImage} />
-            </label>
-            <button onClick={handleSubmit}>submit!!</button>
-            {uploaded && <p style={{ color: '#019563' }}>File uploaded successfully!</p>}
-            <input type='text' placeholder='image description' onChange={(e) => setDescription(e.target.value)} />
-            <input type='text' placeholder='image alt text' onChange={(e) => setAlt(e.target.value)} />
+            <div>
+              <label>
+                <input type="file" accept="image/*" onChange={selectImage} />
+              </label>
+              <button onClick={handleSubmit}>submit!!</button>
+              {uploaded && <p style={{ color: '#019563' }}>File uploaded successfully!</p>}
+              <input value={alt} type='text' placeholder='image alt text' onChange={(e) => setAlt(e.target.value)} />
+            </div>
+            <textarea value={description} rows={3} cols={40} placeholder='image description' onChange={(e) => setDescription(e.target.value)} />
           </div>
         }
 
