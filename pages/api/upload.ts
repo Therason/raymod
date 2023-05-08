@@ -61,7 +61,8 @@ export default async function handler(
   const db = conn.db();
   const status = await db.collection("posts").insertOne({
     url: imgurData.data.link,
-    description: "placeholder description",
+    description: data.fields.description || '',
+    alt: data.fields.alt || '',
   });
   conn.close();
 
