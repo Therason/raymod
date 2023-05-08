@@ -1,6 +1,8 @@
 .container {
   background: #0FA3B1;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .bar {
