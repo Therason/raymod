@@ -1,3 +1,6 @@
-# Notes and stuff...
-
-This app hosts images on Imgur, which could pose to be a bit problematic. There are file upload limits, however most sites have this. However, Imgur is banning NSFW content, as well as content uploaded anonymously that is "inactive". This can maybe be curbed with using OAuth, but that would be... very tedious to implement probably... and not very user friendly. At that point, it would be easier to just upload the file somewhere else and then. Flickr offers an API, which may be good to look into.
+# todo
+- Image description and alt text for upload page
+- Display image description from the gallery page
+- Ability to delete images from admin panel
+- Ability to rearrange images from admin panel
+- Login capabilities

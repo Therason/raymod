@@ -1,14 +1,11 @@
-import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
-import Image from 'next/image'
 import Window from '@/components/window'
 
 export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        {/* <span className={styles.bar}>menu</span> */}
-        {/* <span className={styles.artsy}></span> */}
+
         <div className={styles.headers}>
           <h1 className={styles.header}>RAY.MODULE</h1>
           <h2 className={styles.subheader}>artist//animator</h2>
