@@ -14,7 +14,7 @@ export default function Home() {
         <div className={styles.content}>
           {/* Image isn't working for some reason... */}
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <Window src='/selfie.gif' alt='raccoon selfie' size='300px' handleClick={() => alert('this will be an easter egg maybe')}/>
+          <Window id='raccoon' src='/selfie.gif' alt='raccoon selfie' size='300px' handleClick={() => alert('this will be an easter egg maybe')}/>
         </div>
       </main>
     </>

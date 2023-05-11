@@ -1,10 +1,11 @@
 import styles from '@/styles/Window.module.css'
-import { useDraggable } from '@dnd-kit/core'
+import { useSortable } from '@dnd-kit/sortable'
 
 export default function Window({src, alt, size, handleClick, id}: {src: string, alt: string, size: string, handleClick: any, id: string}) {
-  const {attributes, listeners, setNodeRef, transform} = useDraggable({ id })
+  const {attributes, listeners, setNodeRef, transform, transition} = useSortable({ id })
   const style: any = { width: size, height: size, minWidth: size, minHeight: size}
   if (transform) style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0)`
+  if (transition) style.transition = transition
 
   
   return (
