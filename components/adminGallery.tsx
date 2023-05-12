@@ -20,7 +20,7 @@ import {
 
 export default function AdminGallery() {
   // rendered images
-  const [ images, setImages ] = useState([])
+  const [ images, setImages ] = useState<any>([])
   useEffect(() => {
     fetch('/api/images')
       .then(res => res.json())
@@ -38,9 +38,16 @@ export default function AdminGallery() {
   const handleDragEnd = (e: DragEndEvent) => {
     const {active, over} = e
     if (over && active.id !== over.id) {
-      setImages((images) => {
-        const oldIndex = images.indexOf(active.id)
-        const newIndex = images.indexOf(over.id)
+      setImages((images: any) => {
+        // const oldIndex = images.indexOf(active.id)
+        // const newIndex = images.indexOf(over.id)
+        let oldIndex = 0
+        let newIndex = 0
+
+        for (let i = 0; i < images.length; i++) {
+          if (images[i].id === active.id) oldIndex = i
+          if (images[i].id === over.id) newIndex = i
+        }
 
         return arrayMove(images, oldIndex, newIndex)
       })
@@ -54,9 +61,9 @@ export default function AdminGallery() {
       <div className={styles.container}>
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={images} strategy={verticalListSortingStrategy}>
-            {images.map((image: any, index) => {
+            {images.map((image: any, index: any) => {
               return (
-                <Window id={image._id} key={image._id} src={image.url} alt={image.alt} size="250px" handleClick={() => {
+                <Window id={index} key={image._id} src={image.url} alt={image.alt} size="250px" handleClick={() => {
                   fetch('/api/deleteImage', {
                     method: "POST",
                     headers: {

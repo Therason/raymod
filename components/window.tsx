@@ -9,7 +9,7 @@ export default function Window({src, alt, size, handleClick, id}: {src: string, 
 
   
   return (
-    <div className={`border ${styles.container}`} style={style} ref={setNodeRef} {...listeners} {...attributes}>
+    <div id={id} className={`border ${styles.container}`} style={style} ref={setNodeRef} {...listeners} {...attributes}>
       <span className={styles.bar}>
         <img className={`border ${styles.icon}`} src='/close-icon.png' onClick={handleClick}></img>
       </span>
