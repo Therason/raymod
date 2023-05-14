@@ -30,7 +30,13 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return  { username: 'ray', id: 'raymod' }
+        // this is not secure... oh well :]
+        if (!credentials) throw new Error('no credentials provided')
+        if (credentials.username !== process.env.AUTH_USERNAME || credentials.password !== process.env.AUTH_PASSWORD) {
+          throw new Error('invalid credentials')
+        }
+
+        return { username: 'ray', id: 'raymod' }
       }
     })
   ]

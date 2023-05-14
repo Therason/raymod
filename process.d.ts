@@ -4,5 +4,7 @@ declare namespace NodeJS {
     MONGO_URL: string;
     NEXTAUTH_SECRET: string;
     NEXTAUTH_URL: string;
+    USERNAME: string;
+    PASSWORD: string;
   }
 }
