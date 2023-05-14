@@ -28,8 +28,8 @@
 @media(max-width: 800px) {
   .content {
     display: grid;
-  grid-template-rows: 5fr 2fr;
-  column-gap: 10px;
+    grid-template-rows: 5fr 2fr;
+    column-gap: 10px;
   }
 }
 

@@ -11,7 +11,7 @@ export default function AdminGallery({ images, setImages }: { images: any, setIm
         <div ref={provided.innerRef} {...provided.droppableProps} className={styles.container}>
           {images.map((image: any, index: any) => {
             return (
-              <AdminWindow key={image._id} id={image._id} index={index} src={image.url} alt={image.alt} size="250px" handleClick={() => {
+              <AdminWindow key={image._id} description={image.description} id={image._id} index={index} src={image.url} alt={image.alt} size="250px" handleClick={() => {
                 fetch('/api/deleteImage', {
                   method: "POST",
                   headers: {
