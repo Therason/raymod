@@ -12,7 +12,7 @@ export default async function handler(
 
   const conn = await connect()
   const db = conn.db()
-  const images = (await db.collection('posts').find({}).sort({_id: -1}).toArray()).map((document) => {
+  const images = (await db.collection('posts').find({}).sort({position: -1}).toArray()).map((document) => {
     return {
       ...document,
       _id: document._id.toString()

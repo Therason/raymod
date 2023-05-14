@@ -15,10 +15,15 @@ export default function Admin() {
 
   // images for gallery
   const [ images, setImages ] = useState([])
+  // const [ oldImages, setOldImages] = useState([])
   useEffect(() => {
     fetch('/api/images')
       .then(res => res.json())
-      .then(data => setImages(data.images))
+      .then(data => {
+        setImages(data.images)
+        // "backup" to compare against when editing data
+        // setOldImages(data.images)
+      })
   }, [])
 
   // file upload functions
@@ -59,6 +64,16 @@ export default function Admin() {
     setImages(newOrder)
   }
 
+  const handleSave = async () => {
+    console.log('images:', images)
+    const res = await fetch('/api/edit', {
+      method: 'POST',
+      body: JSON.stringify(images)
+    })
+    const data = await res.json()
+    console.log('save res:', data)
+  }
+
   return (
     <>
       <main className={`${styles.main}`}>
@@ -85,6 +100,7 @@ export default function Admin() {
         {viewGallery && 
           <>
             <h2>Admin Gallery</h2>
+            <button onClick={handleSave}>save</button>
             <DragDropContext onDragEnd={handleDragEnd}>
               <AdminGallery images={images} setImages={setImages}/>
             </DragDropContext>

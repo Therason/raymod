@@ -59,10 +59,12 @@ export default async function handler(
   // TODO: count documents within DB to establish gallery order that can be rearranged
   const conn = await connect();
   const db = conn.db();
+  const count = await db.collection('posts').countDocuments()
   const status = await db.collection("posts").insertOne({
     url: imgurData.data.link,
     description: data.fields.description || '',
     alt: data.fields.alt || '',
+    position: count
   });
   conn.close();
 

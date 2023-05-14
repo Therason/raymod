@@ -19,6 +19,7 @@ export default async function handler(
   if (!status || !status.ok) {
     res.status(500).json({message: 'server error'})
   }
+  conn.close()
 
   res.status(200).json({ message: 'success' })
 }

@@ -4,8 +4,6 @@ import AdminWindow from './adminWindow'
 import { Droppable } from 'react-beautiful-dnd'
 
 export default function AdminGallery({ images, setImages }: { images: any, setImages: any }) {
-
-
   return ( 
     // <div className={styles.container}>
     <Droppable droppableId='list'>
