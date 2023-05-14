@@ -2,8 +2,11 @@ import styles from '@/styles/Upload.module.css'
 import { useState, useEffect } from 'react'
 import AdminGallery from '@/components/adminGallery'
 import { DragDropContext, OnDragEndResponder } from 'react-beautiful-dnd'
+import { useSession } from 'next-auth/react'
 
 export default function Admin() {
+  const {data: session, status} = useSession()
+
   // upload form state
   const [ image, setImage ] = useState<File>()
   const [ description, setDescription ] = useState('')
@@ -17,6 +20,7 @@ export default function Admin() {
   const [ images, setImages ] = useState([])
   // const [ oldImages, setOldImages] = useState([])
   useEffect(() => {
+    console.log('session:', session, status)
     fetch('/api/images')
       .then(res => res.json())
       .then(data => {
