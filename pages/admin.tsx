@@ -1,8 +1,9 @@
 import styles from '@/styles/Upload.module.css'
 import { useState, useEffect } from 'react'
 import AdminGallery from '@/components/adminGallery'
+import { DragDropContext, OnDragEndResponder } from 'react-beautiful-dnd'
 
-export default function Upload() {
+export default function Admin() {
   // upload form state
   const [ image, setImage ] = useState<File>()
   const [ description, setDescription ] = useState('')
@@ -20,6 +21,7 @@ export default function Upload() {
       .then(data => setImages(data.images))
   }, [])
 
+  // file upload functions
   const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files as FileList
     setImage(selectedFiles?.[0])
@@ -38,9 +40,23 @@ export default function Upload() {
     })
     const data = await res.json()
     console.log(data)
+
+    // reset state
     setUploaded(true)
     setDescription('')
     setAlt('')
+  }
+
+  // gallery functions
+  const handleDragEnd: OnDragEndResponder = (result) => {
+    if (!result.destination) return
+    if (result.destination.index === result.source.index) return
+
+    // rearrange images state
+    const newOrder = Array.from(images)
+    const [ removed ] = newOrder.splice(result.source.index, 1)
+    newOrder.splice(result.destination.index, 0, removed)
+    setImages(newOrder)
   }
 
   return (
@@ -69,7 +85,9 @@ export default function Upload() {
         {viewGallery && 
           <>
             <h2>Admin Gallery</h2>
-            <AdminGallery images={images} setImages={setImages}/>
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <AdminGallery images={images} setImages={setImages}/>
+            </DragDropContext>
           </>
         }
       </main>
