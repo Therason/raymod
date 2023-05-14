@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 import { readFileSync } from "fs";
 import connect from "@/lib/db";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./auth/[...nextauth]";
 
 type Data = {};
 
@@ -18,6 +20,13 @@ export default async function handler(
   // only accept POST requests
   if (req.method !== "POST") {
     res.status(422).json({ message: "Route not valid" });
+    return;
+  }
+
+  // protected route
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    res.status(401).json({ message: 'ERROR: Forbidden' });
     return;
   }
 

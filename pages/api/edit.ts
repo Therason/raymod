@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import connect from '@/lib/db'
 import { ObjectId } from 'mongodb'
+import { getServerSession } from 'next-auth'
+import { authOptions } from './auth/[...nextauth]'
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,6 +11,13 @@ export default async function handler(
   if (req.method !== 'POST') {
     res.status(422).json({ message: 'Route not valid' })
     return
+  }
+
+  // protected route
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    res.status(401).json({ message: 'ERROR: Forbidden' });
+    return;
   }
   
   const images = JSON.parse(req.body)
