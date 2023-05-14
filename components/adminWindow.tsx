@@ -1,4 +1,4 @@
-import styles from '@/styles/Window.module.css'
+import styles from '@/styles/AdminWindow.module.css'
 import { CSSProperties } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 
