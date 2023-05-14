@@ -23,13 +23,29 @@ export default async function handler(
   const images = JSON.parse(req.body)
   const conn = await connect()
   const db = conn.db()
+
+  // update positions
   for (let i = 0; i < images.length; i++) {
+    console.log(images[i].description)
     if (images[i].position !== images.length - 1 - i) {
       console.log(images[i])
       await db.collection('posts').findOneAndUpdate(
         { _id: new ObjectId(images[i]._id) }, 
         {
           $set: { position: images.length - 1 - i }
+        }
+      )
+    }
+  }
+
+  // update descriptions
+  const docs = await db.collection('posts').find({}).sort({ position: -1 }).toArray()
+  for (let i = 0; i < docs.length; i++) {
+    if (docs[i].description !== images[i].description) {
+      await db.collection('posts').findOneAndUpdate(
+        { _id: docs[i]._id },
+        {
+          $set: { description: images[i].description }
         }
       )
     }
