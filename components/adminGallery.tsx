@@ -6,9 +6,9 @@ import { Droppable } from 'react-beautiful-dnd'
 export default function AdminGallery({ images, setImages }: { images: any, setImages: any }) {
   return ( 
     // <div className={styles.container}>
-    <Droppable droppableId='list'>
+    <Droppable droppableId='list' direction='horizontal'>
       {provided => (
-        <div ref={provided.innerRef} {...provided.droppableProps}>
+        <div ref={provided.innerRef} {...provided.droppableProps} className={styles.container}>
           {images.map((image: any, index: any) => {
             return (
               <AdminWindow key={image._id} id={image._id} index={index} src={image.url} alt={image.alt} size="250px" handleClick={() => {
