@@ -1,23 +1,18 @@
 import styles from '@/styles/Window.module.css'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
+import { CSSProperties } from 'react'
 
-export default function Window({src, alt, size, handleClick, id}: {src: string, alt: string, size: string, handleClick: any, id: string}) {
-  const {attributes, listeners, setNodeRef, transform, transition} = useSortable({ id })
-  const style: any = { 
+export default function Window(
+  {src, alt, size, handleClick, id}: {src: string, alt: string, size: string, handleClick: any, id: string}
+  ) {
+  const style: CSSProperties = { 
     width: size, 
     height: size, 
     minWidth: size, 
     minHeight: size,
-    transform: CSS.Transform.toString(transform),
-    transition: transition
   }
-  // if (transform) style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0)`
-  // if (transition) style.transition = transition
-
   
   return (
-    <div id={id} className={`border ${styles.container}`} style={style} ref={setNodeRef} {...listeners} {...attributes}>
+    <div className={`border ${styles.container}`} style={style}>
       <span className={styles.bar}>
         <img className={`border ${styles.icon}`} src='/close-icon.png' onClick={handleClick}></img>
       </span>

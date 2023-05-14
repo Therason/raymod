@@ -1,7 +1,6 @@
 import styles from '@/styles/Upload.module.css'
 import { useState, useEffect } from 'react'
 import AdminGallery from '@/components/adminGallery'
-// import { DndContext } from '@dnd-kit/core'
 
 export default function Upload() {
   // upload form state
