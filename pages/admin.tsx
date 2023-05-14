@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import AdminGallery from '@/components/adminGallery'
 import { DragDropContext, OnDragEndResponder } from 'react-beautiful-dnd'
 import { useSession } from 'next-auth/react'
+import { getServerSession } from 'next-auth'
+import { authOptions } from './api/auth/[...nextauth]'
 
 export default function Admin() {
   const {data: session, status} = useSession()
@@ -115,3 +117,20 @@ export default function Admin() {
   )
 }
 
+export async function getServerSideProps(context: any) {
+  const session = await getServerSession(context.req, context.res, authOptions)
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {
+      session
+    }
+  }
+}
