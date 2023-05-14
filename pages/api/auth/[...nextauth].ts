@@ -7,16 +7,16 @@ export const authOptions: AuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
+    async session({ session, token }) {
+      // idk why this error is popping up
+      // session.user = token.user;
+      return session;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.user = user;
       }
       return token;
-    },
-    async session({ session, token }) {
-      // idk why this error is popping up
-      session.user = token.user;
-      return session;
     },
   },
   pages: {
