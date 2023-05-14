@@ -18,14 +18,14 @@ import {
 } from '@dnd-kit/sortable'
 
 
-export default function AdminGallery() {
+export default function AdminGallery({ images, setImages }: { images: any, setImages: any }) {
   // rendered images
-  const [ images, setImages ] = useState<any>([])
-  useEffect(() => {
-    fetch('/api/images')
-      .then(res => res.json())
-      .then(data => setImages(data.images))
-  }, [])
+  // const [ images, setImages ] = useState<any>([])
+  // useEffect(() => {
+  //   fetch('/api/images')
+  //     .then(res => res.json())
+  //     .then(data => setImages(data.images))
+  // }, [])
 
   // setup droppable area
   const sensors = useSensors(
@@ -54,37 +54,33 @@ export default function AdminGallery() {
     }
   }
 
-  return (
-    <>
-      <h2>Admin Gallery</h2>
-      
-      <div className={styles.container}>
-        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-          <SortableContext items={images} strategy={verticalListSortingStrategy}>
-            {images.map((image: any, index: any) => {
-              return (
-                <Window id={index} key={image._id} src={image.url} alt={image.alt} size="250px" handleClick={() => {
-                  fetch('/api/deleteImage', {
-                    method: "POST",
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ id: image._id }),
+  return ( 
+    // <div className={styles.container}>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={images} strategy={verticalListSortingStrategy}>
+          {images.map((image: any, index: any) => {
+            return (
+              <Window id={index} key={image._id} src={image.url} alt={image.alt} size="250px" handleClick={() => {
+                fetch('/api/deleteImage', {
+                  method: "POST",
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ id: image._id }),
+                })
+                  .then(res => res.json())
+                  .then(data => {
+                    console.log(data)
+                    const filtered = images.filter((i: any) => i._id !== image._id)
+                    setImages(filtered)
                   })
-                    .then(res => res.json())
-                    .then(data => {
-                      console.log(data)
-                      const filtered = images.filter((i: any) => i._id !== image._id)
-                      setImages(filtered)
-                    })
-                    .catch(e => console.error(e))
-                }}/>
-              )
-            })}
-          </SortableContext>
-        </DndContext>
-      </div>
-    </>
+                  .catch(e => console.error(e))
+              }}/>
+            )
+          })}
+        </SortableContext>
+      </DndContext>
+    // </div>
   )
 }
 

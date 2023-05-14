@@ -1,11 +1,19 @@
 import styles from '@/styles/Window.module.css'
 import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 export default function Window({src, alt, size, handleClick, id}: {src: string, alt: string, size: string, handleClick: any, id: string}) {
   const {attributes, listeners, setNodeRef, transform, transition} = useSortable({ id })
-  const style: any = { width: size, height: size, minWidth: size, minHeight: size}
-  if (transform) style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0)`
-  if (transition) style.transition = transition
+  const style: any = { 
+    width: size, 
+    height: size, 
+    minWidth: size, 
+    minHeight: size,
+    transform: CSS.Transform.toString(transform),
+    transition: transition
+  }
+  // if (transform) style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0)`
+  // if (transition) style.transition = transition
 
   
   return (

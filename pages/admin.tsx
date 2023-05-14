@@ -1,5 +1,5 @@
 import styles from '@/styles/Upload.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AdminGallery from '@/components/adminGallery'
 // import { DndContext } from '@dnd-kit/core'
 
@@ -11,7 +11,15 @@ export default function Upload() {
   const [ uploaded, setUploaded ] = useState(false)
 
   // navigation state
-  const [ gallery, setGallery ] = useState(false)
+  const [ viewGallery, setViewGallery ] = useState(false)
+
+  // images for gallery
+  const [ images, setImages ] = useState([])
+  useEffect(() => {
+    fetch('/api/images')
+      .then(res => res.json())
+      .then(data => setImages(data.images))
+  }, [])
 
   const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files as FileList
@@ -41,10 +49,10 @@ export default function Upload() {
       <main className={`${styles.main}`}>
         <h1>Admin Stuff :D</h1>
         {/* UI switcher */}
-        <h3 onClick={() => setGallery(!gallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{gallery ? 'upload new image...' : 'edit gallery...'}</h3>
+        <h3 onClick={() => setViewGallery(!viewGallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{viewGallery ? 'upload new image...' : 'edit gallery...'}</h3>
 
         {/* file upload */}
-        {!gallery &&      
+        {!viewGallery &&      
           <div className={styles.upload}>
             <div>
               <label>
@@ -59,10 +67,11 @@ export default function Upload() {
         }
 
         {/* gallery config */}
-        {gallery && 
-          // <DndContext>
-            <AdminGallery />
-          // /DndContext>
+        {viewGallery && 
+          <>
+            <h2>Admin Gallery</h2>
+            <AdminGallery images={images} setImages={setImages}/>
+          </>
         }
       </main>
     </>
