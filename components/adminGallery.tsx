@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
 import styles from '@/styles/AdminGallery.module.css'
 import AdminWindow from './adminWindow'
 import { Droppable } from 'react-beautiful-dnd'
 
-export default function AdminGallery({ images, setImages }: { images: any, setImages: any }) {
+export default function AdminGallery({ images, setImages, revalidate }: { images: any, setImages: any, revalidate: any }) {
   return ( 
     // <div className={styles.container}>
     <Droppable droppableId='list' direction='horizontal'>
@@ -20,10 +19,11 @@ export default function AdminGallery({ images, setImages }: { images: any, setIm
                   body: JSON.stringify({ id: image._id }),
                 })
                   .then(res => res.json())
-                  .then(data => {
+                  .then(async (data) => {
                     console.log(data)
                     const filtered = images.filter((i: any) => i._id !== image._id)
                     setImages(filtered)
+                    await revalidate()
                   })
                   .catch(e => console.error(e))
               }}/>

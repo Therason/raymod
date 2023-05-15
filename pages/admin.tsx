@@ -2,13 +2,10 @@ import styles from '@/styles/Upload.module.css'
 import { useState, useEffect } from 'react'
 import AdminGallery from '@/components/adminGallery'
 import { DragDropContext, OnDragEndResponder } from 'react-beautiful-dnd'
-import { useSession } from 'next-auth/react'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]'
 
 export default function Admin({ token }: { token: string }) {
-  const {data: session, status} = useSession()
-
   // upload form state
   const [ image, setImage ] = useState<File>()
   const [ description, setDescription ] = useState('')
@@ -21,14 +18,15 @@ export default function Admin({ token }: { token: string }) {
   // images for gallery
   const [ images, setImages ] = useState([])
   useEffect(() => {
-    fetch('/api/images')
-      .then(res => res.json())
-      .then(data => {
-        setImages(data.images)
-        // "backup" to compare against when editing data
-        // setOldImages(data.images)
-      })
-  }, [])
+    // refresh images when a new image gets uploaded
+    if (uploaded) {
+      fetch('/api/images')
+        .then(res => res.json())
+        .then(data => {
+          setImages(data.images)
+        })
+    }
+  }, [uploaded])
 
   // ISR revalidation
   const revalidate = async () => {
@@ -119,7 +117,7 @@ export default function Admin({ token }: { token: string }) {
             <h2>Admin Gallery</h2>
             <button onClick={handleSave}>save</button>
             <DragDropContext onDragEnd={handleDragEnd}>
-              <AdminGallery images={images} setImages={setImages}/>
+              <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>
             </DragDropContext>
           </>
         }
