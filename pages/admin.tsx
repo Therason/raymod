@@ -19,13 +19,14 @@ export default function Admin({ token }: { token: string }) {
   const [ images, setImages ] = useState([])
   useEffect(() => {
     // refresh images when a new image gets uploaded
-    if (uploaded) {
+    if (uploaded || !image) {
       fetch('/api/images')
         .then(res => res.json())
         .then(data => {
           setImages(data.images)
         })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploaded])
 
   // ISR revalidation
@@ -117,7 +118,7 @@ export default function Admin({ token }: { token: string }) {
             <h2>Admin Gallery</h2>
             <button onClick={handleSave}>save</button>
             <DragDropContext onDragEnd={handleDragEnd}>
-              <AdminGallery images={images} setImages={setImages} token={token}/>
+              <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>
             </DragDropContext>
           </>
         }
