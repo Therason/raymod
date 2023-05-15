@@ -117,7 +117,7 @@ export default function Admin({ token }: { token: string }) {
             <h2>Admin Gallery</h2>
             <button onClick={handleSave}>save</button>
             <DragDropContext onDragEnd={handleDragEnd}>
-              <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>
+              <AdminGallery images={images} setImages={setImages} token={token}/>
             </DragDropContext>
           </>
         }

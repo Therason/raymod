@@ -2,7 +2,7 @@ import styles from '@/styles/AdminGallery.module.css'
 import AdminWindow from './adminWindow'
 import { Droppable } from 'react-beautiful-dnd'
 
-export default function AdminGallery({ images, setImages, revalidate }: { images: any, setImages: any, revalidate: any }) {
+export default function AdminGallery({ images, setImages, token }: { images: any, setImages: any, token: string }) {
   return ( 
     // <div className={styles.container}>
     <Droppable droppableId='list' direction='horizontal'>
@@ -23,7 +23,7 @@ export default function AdminGallery({ images, setImages, revalidate }: { images
                     console.log(data)
                     const filtered = images.filter((i: any) => i._id !== image._id)
                     setImages(filtered)
-                    await revalidate()
+                    await fetch(`/api/revalidate?secret=${token}`)
                   })
                   .catch(e => console.error(e))
               }}/>
