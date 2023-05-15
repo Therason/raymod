@@ -26,9 +26,7 @@ export default async function handler(
 
   // update positions
   for (let i = 0; i < images.length; i++) {
-    console.log(images[i].description)
     if (images[i].position !== images.length - 1 - i) {
-      console.log(images[i])
       await db.collection('posts').findOneAndUpdate(
         { _id: new ObjectId(images[i]._id) }, 
         {

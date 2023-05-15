@@ -19,7 +19,7 @@ export default function Gallery({ images }: any) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const conn = await connect();
   const db = conn.db();
   const images = (await db.collection('posts').find({}).sort({position: -1}).toArray()).map((document) => {
@@ -29,5 +29,20 @@ export async function getServerSideProps() {
     }
   });
   conn.close()
-  return { props: { images }}
+  return {
+    props: { images }
+  }
 }
+
+// export async function getServerSideProps() {
+//   const conn = await connect();
+//   const db = conn.db();
+//   const images = (await db.collection('posts').find({}).sort({position: -1}).toArray()).map((document) => {
+//     return {
+//       ...document,
+//       _id: document._id.toString()
+//     }
+//   });
+//   conn.close()
+//   return { props: { images }}
+// }

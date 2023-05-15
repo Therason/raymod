@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]'
 
-export default function Admin() {
+export default function Admin({ token }: { token: string }) {
   const {data: session, status} = useSession()
 
   // upload form state
@@ -20,9 +20,7 @@ export default function Admin() {
 
   // images for gallery
   const [ images, setImages ] = useState([])
-  // const [ oldImages, setOldImages] = useState([])
   useEffect(() => {
-    console.log('session:', session, status)
     fetch('/api/images')
       .then(res => res.json())
       .then(data => {
@@ -31,6 +29,13 @@ export default function Admin() {
         // setOldImages(data.images)
       })
   }, [])
+
+  // ISR revalidation
+  const revalidate = async () => {
+    const res = await fetch(`/api/revalidate?secret=${token}`)
+    const data = await res.json()
+    console.log('revalidate:', data)
+  }
 
   // file upload functions
   const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +56,9 @@ export default function Admin() {
     })
     const data = await res.json()
     console.log(data)
+
+    // revalidate
+    await revalidate()
 
     // reset state
     setUploaded(true)
@@ -78,6 +86,9 @@ export default function Admin() {
     })
     const data = await res.json()
     console.log('save res:', data)
+
+    // revalidate
+    await revalidate()
   }
 
   return (
@@ -129,6 +140,8 @@ export async function getServerSideProps(context: any) {
   }
 
   return {
-    props: {}
+    props: {
+      token: process.env.REVALIDATE_TOKEN
+    }
   }
 }
