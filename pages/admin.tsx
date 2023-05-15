@@ -1,19 +1,18 @@
-import styles from '@/styles/Upload.module.css'
+import styles from '@/styles/Admin.module.css'
 import { useState, useEffect } from 'react'
 import AdminGallery from '@/components/adminGallery'
 import { DragDropContext, OnDragEndResponder } from 'react-beautiful-dnd'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]'
+import AdminUpload from '@/components/adminUpload'
 
 export default function Admin({ token }: { token: string }) {
-  // upload form state
-  const [ image, setImage ] = useState<File>()
-  const [ description, setDescription ] = useState('')
-  const [ alt, setAlt ] = useState('')
-  const [ uploaded, setUploaded ] = useState(false)
-
   // navigation state
   const [ viewGallery, setViewGallery ] = useState(false)
+
+  // upload form state
+  const [ image, setImage ] = useState<File>()
+  const [ uploaded, setUploaded ] = useState(false)
 
   // images for gallery
   const [ images, setImages ] = useState([])
@@ -29,40 +28,11 @@ export default function Admin({ token }: { token: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploaded])
 
-  // ISR revalidation
+  // ISR helper
   const revalidate = async () => {
     const res = await fetch(`/api/revalidate?secret=${token}`)
     const data = await res.json()
     console.log('revalidate:', data)
-  }
-
-  // file upload functions
-  const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = e.target.files as FileList
-    setImage(selectedFiles?.[0])
-    setUploaded(false)
-  }
-
-  const handleSubmit = async () => {
-    const form = new FormData()
-    form.append('image', image as Blob)
-    form.append('description', description)
-    form.append('alt', alt)
-
-    const res = await fetch('/api/upload', {
-      method: 'POST',
-      body: form
-    })
-    const data = await res.json()
-    console.log(data)
-
-    // revalidate
-    await revalidate()
-
-    // reset state
-    setUploaded(true)
-    setDescription('')
-    setAlt('')
   }
 
   // gallery functions
@@ -98,18 +68,8 @@ export default function Admin({ token }: { token: string }) {
         <h3 onClick={() => setViewGallery(!viewGallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{viewGallery ? 'upload new image...' : 'edit gallery...'}</h3>
 
         {/* file upload */}
-        {!viewGallery &&      
-          <div className={styles.upload}>
-            <div>
-              <label>
-                <input type="file" accept="image/*" onChange={selectImage} />
-              </label>
-              <button onClick={handleSubmit}>submit!!</button>
-              {uploaded && <p style={{ color: '#019563' }}>File uploaded successfully!</p>}
-              <input value={alt} type='text' placeholder='image alt text' onChange={(e) => setAlt(e.target.value)} />
-            </div>
-            <textarea value={description} rows={3} cols={40} placeholder='image description' onChange={(e) => setDescription(e.target.value)} />
-          </div>
+        {!viewGallery && 
+          <AdminUpload revalidate={revalidate} image={image} setImage={setImage} uploaded={uploaded} setUploaded={setUploaded} />
         }
 
         {/* gallery config */}
@@ -128,6 +88,7 @@ export default function Admin({ token }: { token: string }) {
 }
 
 export async function getServerSideProps(context: any) {
+  // verify session
   const session = await getServerSession(context.req, context.res, authOptions)
   if (!session) {
     return {
@@ -138,6 +99,7 @@ export async function getServerSideProps(context: any) {
     }
   }
 
+  // pass on revalidation token for ISR
   return {
     props: {
       token: process.env.REVALIDATE_TOKEN
