@@ -19,16 +19,42 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
   padding: 0 4rem;
 }
 
 .switcher {
   cursor: pointer;
   padding: 0.5rem;
-  width: 100%;
+  width: auto;
 }
 
 .switcher:hover {
   color: #7e8792;
+}
+
+@media(min-width: 801px) {
+  .container {
+    grid-template-columns: 1fr 4fr;
+  }
+}
+
+@media(max-width: 800px) {
+  .main {
+    gap: 0.5rem;
+  }
+
+  .main > h1 {
+    padding: 1.5rem 0 0 0;
+    text-align: center;
+  }
+
+  .container {
+    padding: 0 1rem;
+    grid-template-rows: 2rem 1fr;
+  }
+
+  .menu {
+    display: inline-flex;
+    justify-content: space-around;
+  }
 }

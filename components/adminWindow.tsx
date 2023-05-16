@@ -10,7 +10,7 @@ export default function AdminWindow(
   return (
     <Draggable draggableId={id} index={index}>
       {provided => (
-        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={{...provided.draggableProps.style}}>
+        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={{display: 'flex', justifyContent: 'center', ...provided.draggableProps.style}}>
           <div className={`border ${styles.container}`}>
             <span className={styles.bar}>
               <img className={`border ${styles.icon}`} src='/close-icon.png' onClick={handleClick}></img>

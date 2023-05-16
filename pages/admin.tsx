@@ -69,8 +69,8 @@ export default function Admin({ token }: { token: string }) {
           <div className={styles.menu}>
             {/* UI switcher */}
             {/* <h3 onClick={() => setViewGallery(!viewGallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{viewGallery ? 'upload new image...' : 'edit gallery...'}</h3> */}
-            <p className={styles.switcher} onClick={() => setViewGallery(false)} style={viewGallery ? {} : { textDecoration: 'underline' }}>upload image</p>
-            <p className={styles.switcher} onClick={() => setViewGallery(true)} style={viewGallery ? { textDecoration: 'underline' } : {}}>edit gallery</p>
+            <span className={styles.switcher} onClick={() => setViewGallery(false)} style={viewGallery ? {} : { textDecoration: 'underline' }}>upload image</span>
+            <span className={styles.switcher} onClick={() => setViewGallery(true)} style={viewGallery ? { textDecoration: 'underline' } : {}}>edit gallery</span>
           </div>
 
           {/* file upload */}
@@ -81,8 +81,10 @@ export default function Admin({ token }: { token: string }) {
           {/* gallery config */}
           {viewGallery && 
             <div>
-              <h3>delete/edit/rearrange things!!</h3>
-              <button onClick={handleSave}><h3>save</h3></button>
+              <span style={{ width: '100%', display: 'inline-flex', justifyContent: 'center', gap: '2rem'}}>
+                <h3>delete/edit/rearrange things!!</h3>
+                <button onClick={handleSave}><h3>save</h3></button>
+              </span>
               <DragDropContext onDragEnd={handleDragEnd}>
                 <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>
               </DragDropContext>

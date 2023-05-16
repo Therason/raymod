@@ -34,7 +34,6 @@
   /* 300px - 30px bar - 6px border :^) */
   height: 364px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
 }
 
 .image {
@@ -50,4 +49,21 @@
   font-size: 12px;
   padding: 0.5em 0.25em;
   background: #eddcd1;
+}
+
+@media(min-width: 801px) {
+  .content {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media(max-width: 800px) {
+  .container {
+    width: 80%;
+    height: 300px;
+  }
+
+  .content {
+    grid-template-rows: 200px 1fr;
+  }
 }
