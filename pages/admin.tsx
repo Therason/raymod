@@ -62,26 +62,32 @@ export default function Admin({ token }: { token: string }) {
 
   return (
     <>
-      <main className={`${styles.main}`}>
+      <main className={styles.main}>
         <h1>Admin Stuff :D</h1>
-        {/* UI switcher */}
-        <h3 onClick={() => setViewGallery(!viewGallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{viewGallery ? 'upload new image...' : 'edit gallery...'}</h3>
+        <span className={styles.line}></span>
+        <div className={styles.container}>
+          <div className={styles.menu}>
+            {/* UI switcher */}
+            {/* <h3 onClick={() => setViewGallery(!viewGallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{viewGallery ? 'upload new image...' : 'edit gallery...'}</h3> */}
+            <p className={styles.switcher} onClick={() => setViewGallery(false)} style={viewGallery ? {} : { textDecoration: 'underline' }}>upload image</p>
+            <p className={styles.switcher} onClick={() => setViewGallery(true)} style={viewGallery ? { textDecoration: 'underline' } : {}}>edit gallery</p>
+          </div>
 
-        {/* file upload */}
-        {!viewGallery && 
-          <AdminUpload revalidate={revalidate} image={image} setImage={setImage} uploaded={uploaded} setUploaded={setUploaded} />
-        }
+          {/* file upload */}
+          {!viewGallery && 
+            <AdminUpload revalidate={revalidate} image={image} setImage={setImage} uploaded={uploaded} setUploaded={setUploaded} />
+          }
 
-        {/* gallery config */}
-        {viewGallery && 
-          <>
-            <h2>Admin Gallery</h2>
-            <button onClick={handleSave}>save</button>
-            <DragDropContext onDragEnd={handleDragEnd}>
-              <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>
-            </DragDropContext>
-          </>
-        }
+          {/* gallery config */}
+          {viewGallery && 
+            <div>
+              <button onClick={handleSave}>save</button>
+              <DragDropContext onDragEnd={handleDragEnd}>
+                <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>
+              </DragDropContext>
+            </div>
+          }
+        </div>
       </main>
     </>
   )

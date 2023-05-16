@@ -1,7 +1,27 @@
 .main {
-  padding: 6rem;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.upload > * {
-  padding: 5px;
+.line {
+  display: inline-block;
+  width: 100%;
+  height: 2px;
+  background: #46494d;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.switcher {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.switcher:hover {
+  color: #7e8792;
 }
