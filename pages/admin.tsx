@@ -81,7 +81,8 @@ export default function Admin({ token }: { token: string }) {
           {/* gallery config */}
           {viewGallery && 
             <div>
-              <button onClick={handleSave}>save</button>
+              <h3>delete/edit/rearrange things!!</h3>
+              <button onClick={handleSave}><h3>save</h3></button>
               <DragDropContext onDragEnd={handleDragEnd}>
                 <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>
               </DragDropContext>

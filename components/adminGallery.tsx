@@ -5,7 +5,7 @@ import { Droppable } from 'react-beautiful-dnd'
 export default function AdminGallery({ images, setImages, revalidate }: { images: any, setImages: any, revalidate: any }) {
   return ( 
     // <div className={styles.container}>
-    <Droppable droppableId='list' direction='horizontal'>
+    <Droppable droppableId='list' direction='vertical'>
       {provided => (
         <div ref={provided.innerRef} {...provided.droppableProps} className={styles.container}>
           {images.map((image: any, index: any) => {

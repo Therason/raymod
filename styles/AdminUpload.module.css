@@ -1,7 +1,3 @@
-.upload > * {
-  padding: 5px;
-}
-
 .upload {
   display: grid;
   grid-template-columns: 1fr 1fr;
