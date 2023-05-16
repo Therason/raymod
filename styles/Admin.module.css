@@ -32,6 +32,11 @@
   color: #7e8792;
 }
 
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
 @media(min-width: 801px) {
   .container {
     grid-template-columns: 1fr 4fr;

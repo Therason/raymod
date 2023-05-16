@@ -81,7 +81,7 @@ export default function Admin({ token }: { token: string }) {
           {/* gallery config */}
           {viewGallery && 
             <div>
-              <span style={{ width: '100%', display: 'inline-flex', justifyContent: 'center', gap: '2rem'}}>
+              <span style={{ width: '100%', display: 'inline-flex', justifyContent: 'center', gap: '2rem', padding: '1rem 0' }}>
                 <h3>delete/edit/rearrange things!!</h3>
                 <button onClick={handleSave}><h3>save</h3></button>
               </span>
