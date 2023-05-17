@@ -1,6 +1,7 @@
-import { signIn } from 'next-auth/react'
+import { signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import styles from '@/styles/Login.module.css'
 
 export default function Login() {
   const router = useRouter()
@@ -26,15 +27,18 @@ export default function Login() {
   }
 
   return (
-    <>
-      <label>Username:
-        <input type="text" onChange={(e) => setUsername(e.target.value)}></input>
-      </label>
-      <label>Password:
-        <input type="password" onChange={(e) => setPassword(e.target.value)}></input>
-      </label>
-      <button onClick={handleSubmit}>Submit</button>
-      {invalid && <p style={{ color: 'darksalmon' }}>get outta here !!!</p>}
-    </>
+    <main className={styles.main}>
+      <div className={`border ${styles.container}`}>
+        <label>Username:
+          <input type="text" onChange={(e) => setUsername(e.target.value)}></input>
+        </label>
+        <label>Password:
+          <input type="password" onChange={(e) => setPassword(e.target.value)}></input>
+        </label>
+        <button onClick={handleSubmit}>Submit</button>
+        {invalid && <p style={{ color: 'darksalmon' }}>get outta here !!!</p>}
+        {/* <button onClick={async () => await signOut()}>sign out?</button> */}
+      </div>
+    </main>
   )
 }
