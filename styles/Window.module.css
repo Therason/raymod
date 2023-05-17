@@ -13,18 +13,6 @@
   padding: 0.5rem 0.75rem;
 }
 
-.icon {
-  background: #c6c6c6;
-  padding: 0.25rem;
-  width: calc(1rem + 5px);
-  height: calc(1rem + 5px);
-  cursor: pointer;
-}
-
-.icon:hover {
-  background: #9c9a9a;
-}
-
 .image {
   width: 100%;
   height: 100%;
