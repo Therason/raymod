@@ -72,8 +72,8 @@ export default function Admin({ token }: { token: string }) {
         <div className={styles.container}>
           <div className={styles.menu}>
             {/* UI switcher */}
-            <span className={styles.switcher} onClick={() => setViewGallery(false)} style={viewGallery ? {} : { textDecoration: 'underline' }}>upload image</span>
-            <span className={styles.switcher} onClick={() => setViewGallery(true)} style={viewGallery ? { textDecoration: 'underline' } : {}}>edit gallery</span>
+            <span className={styles.switcher} onClick={() => setViewGallery(false)} style={viewGallery ? {} : { textDecoration: 'underline' }}><h2>upload image</h2></span>
+            <span className={styles.switcher} onClick={() => setViewGallery(true)} style={viewGallery ? { textDecoration: 'underline' } : {}}><h2>edit gallery</h2></span>
           </div>
 
           {/* file upload */}
