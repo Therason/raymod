@@ -8,26 +8,27 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // this route NEEDS to be protected asap
   if (req.method !== 'POST') {
-    res.status(422).json({ message: 'Route not valid' })
-    return
+    return res.status(422).json({ message: 'Route not valid' })
   }
   
   // protected route
   const session = await getServerSession(req, res, authOptions);
   if (!session) {
-    res.status(401).json({ message: 'ERROR: Forbidden' });
-    return;
+    return res.status(401).json({ message: 'ERROR: Forbidden' })
   }
 
-  const conn = await connect()
-  const db = conn.db()
-  const status = await db.collection('posts').findOneAndDelete({ _id: new ObjectId(req.body.id) })
-  if (!status || !status.ok) {
-    res.status(500).json({message: 'server error'})
-  }
-  conn.close()
+  try {
+    const conn = await connect()
+    const db = conn.db()
+    const status = await db.collection('posts').findOneAndDelete({ _id: new ObjectId(req.body.id) })
+    if (!status || !status.ok) {
+      return res.status(500).json({message: 'database error'})
+    }
 
-  res.status(200).json({ message: 'success' })
+    conn.close()
+    return res.status(200).json({ message: 'success' })
+  } catch(err) {
+    return res.status(500).json({ message: 'internal server error...' })
+  }
 }

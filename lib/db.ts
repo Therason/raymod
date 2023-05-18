@@ -1,6 +1,6 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb'
 
 export default async function connect() {
-  const conn = await MongoClient.connect(process.env.MONGO_URL);
-  return conn;
+  const conn = await MongoClient.connect(process.env.MONGO_URL)
+  return conn
 }
