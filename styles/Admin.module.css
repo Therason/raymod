@@ -32,14 +32,25 @@
   color: #7e8792;
 }
 
-.menu {
-  display: flex;
-  flex-direction: column;
+.save {
+  padding: 0.25em;
+  background: #fff1e8;
+  color: inherit;
+  cursor: pointer;
+}
+
+.save:hover {
+  background: #eddcd1;
 }
 
 @media(min-width: 801px) {
   .container {
     grid-template-columns: 1fr 4fr;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
   }
 }
 

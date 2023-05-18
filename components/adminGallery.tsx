@@ -4,13 +4,12 @@ import { Droppable } from 'react-beautiful-dnd'
 
 export default function AdminGallery({ images, setImages, revalidate }: { images: any, setImages: any, revalidate: any }) {
   return ( 
-    // <div className={styles.container}>
     <Droppable droppableId='list' direction='vertical'>
       {provided => (
         <div ref={provided.innerRef} {...provided.droppableProps} className={styles.container}>
           {images.map((image: any, index: any) => {
             return (
-              <AdminWindow key={image._id} setImages={setImages} description={image.description} id={image._id} index={index} src={image.url} alt={image.alt} size="250px" handleClick={() => {
+              <AdminWindow key={image._id} setImages={setImages} description={image.description} id={image._id} index={index} src={image.url} alt={image.alt} handleClick={() => {
                 fetch('/api/deleteImage', {
                   method: "POST",
                   headers: {
@@ -20,7 +19,6 @@ export default function AdminGallery({ images, setImages, revalidate }: { images
                 })
                   .then(res => res.json())
                   .then(async (data) => {
-                    console.log(data)
                     const filtered = images.filter((i: any) => i._id !== image._id)
                     setImages(filtered)
                     await revalidate()

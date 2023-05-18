@@ -46,7 +46,12 @@ export default function Admin({ token }: { token: string }) {
     setImages(newOrder)
   }
 
+  // saving gallery edits
+  const [ saving, setSaving ] = useState(false)
+  const [ saved, setSaved ] = useState(false)
   const handleSave = async () => {
+    setSaved(false)
+    setSaving(true)
     const res = await fetch('/api/edit', {
       method: 'POST',
       body: JSON.stringify(images)
@@ -55,6 +60,8 @@ export default function Admin({ token }: { token: string }) {
 
     // revalidate
     await revalidate()
+    setSaving(false)
+    setSaved(true)
   }
 
   return (
@@ -65,7 +72,6 @@ export default function Admin({ token }: { token: string }) {
         <div className={styles.container}>
           <div className={styles.menu}>
             {/* UI switcher */}
-            {/* <h3 onClick={() => setViewGallery(!viewGallery)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{viewGallery ? 'upload new image...' : 'edit gallery...'}</h3> */}
             <span className={styles.switcher} onClick={() => setViewGallery(false)} style={viewGallery ? {} : { textDecoration: 'underline' }}>upload image</span>
             <span className={styles.switcher} onClick={() => setViewGallery(true)} style={viewGallery ? { textDecoration: 'underline' } : {}}>edit gallery</span>
           </div>
@@ -78,9 +84,11 @@ export default function Admin({ token }: { token: string }) {
           {/* gallery config */}
           {viewGallery && 
             <div>
-              <span style={{ width: '100%', display: 'inline-flex', justifyContent: 'center', gap: '2rem', padding: '1rem 0' }}>
+              <span style={{ width: '100%', display: 'inline-flex', justifyContent: 'center', gap: '2rem', padding: '1rem 0', alignItems: 'center' }}>
                 <h3>delete/edit/rearrange things!!</h3>
-                <button onClick={handleSave}><h3>save</h3></button>
+                {saving && <h3>saving...</h3>}
+                {saved && <h3 style={{ color: '#019563' }}>saved!</h3>}
+                <button onClick={handleSave} className={`border ${styles.save}`}><h3>save</h3></button>
               </span>
               <DragDropContext onDragEnd={handleDragEnd}>
                 <AdminGallery images={images} setImages={setImages} revalidate={revalidate}/>

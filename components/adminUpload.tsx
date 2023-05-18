@@ -21,7 +21,6 @@ export default function AdminUpload(
       body: form
     })
     const data = await res.json()
-    console.log(data)
 
     // revalidate
     await revalidate()

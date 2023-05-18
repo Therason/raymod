@@ -5,7 +5,7 @@ import CloseIcon from './closeIcon'
 import Image from 'next/image'
 
 export default function AdminWindow(
-  {src, alt, size, handleClick, id, index, description, setImages}: {src: string, alt: string, size: string, handleClick: any, id: string, index: number, description: string, setImages: any}
+  {src, alt, handleClick, id, index, description, setImages}: {src: string, alt: string, handleClick: any, id: string, index: number, description: string, setImages: any}
   ) {  
   // this is not clean
   const [ desc, setDesc ] = useState(description)
