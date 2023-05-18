@@ -19,6 +19,8 @@ export default function Gallery({ images }: any) {
   )
 }
 
+// get images from DB
+// uses ISR instead of SSR to improve speed
 export async function getStaticProps() {
   const conn = await connect();
   const db = conn.db();
@@ -33,16 +35,3 @@ export async function getStaticProps() {
     props: { images }
   }
 }
-
-// export async function getServerSideProps() {
-//   const conn = await connect();
-//   const db = conn.db();
-//   const images = (await db.collection('posts').find({}).sort({position: -1}).toArray()).map((document) => {
-//     return {
-//       ...document,
-//       _id: document._id.toString()
-//     }
-//   });
-//   conn.close()
-//   return { props: { images }}
-// }

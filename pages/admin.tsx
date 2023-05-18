@@ -32,7 +32,6 @@ export default function Admin({ token }: { token: string }) {
   const revalidate = async () => {
     const res = await fetch(`/api/revalidate?secret=${token}`)
     const data = await res.json()
-    console.log('revalidate:', data)
   }
 
   // gallery functions
@@ -48,13 +47,11 @@ export default function Admin({ token }: { token: string }) {
   }
 
   const handleSave = async () => {
-    console.log('images:', images)
     const res = await fetch('/api/edit', {
       method: 'POST',
       body: JSON.stringify(images)
     })
     const data = await res.json()
-    console.log('save res:', data)
 
     // revalidate
     await revalidate()

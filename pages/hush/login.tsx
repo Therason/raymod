@@ -17,8 +17,6 @@ export default function Login() {
       password
     })
 
-    console.log(result)
-
     if (result && !result.error && result.ok) {
       router.push('/admin')
     } else {
