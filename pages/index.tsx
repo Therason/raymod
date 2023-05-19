@@ -1,19 +1,21 @@
 import styles from '@/styles/Home.module.css'
-import Window from '@/components/window'
+import Image from 'next/image'
+import localFont from 'next/font/local'
+
+const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
 export default function Home() {
   return (
     <>
       <main className={styles.main}>
-
-        <div className={styles.headers}>
-          <h1 className={styles.header}>RAY.MODULE</h1>
-          <h2 className={styles.subheader}>artist//animator</h2>
-        </div>
-
-        <div className={styles.content}>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <Window id='raccoon' src='/selfie.gif' alt='raccoon selfie' size='300px' handleClick={() => alert('this will be an easter egg maybe')}/>
+        <div className={styles.header_container}>
+          <div className={`${bilgres.className} ${styles.header}`}>
+            <h1 style={{ zIndex: 3 }}>RAY</h1>
+            <div className={styles.lizard_container}>
+              <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} />
+            </div>
+            <h1 style={{ zIndex: 1 }}>MODULE</h1>
+          </div>
         </div>
       </main>
     </>

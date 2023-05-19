@@ -2,6 +2,7 @@
   --light-blue: #62A8AC;
   --dark-blue: #5497A7;
   --off-white: #FFF1E8;
+  --offer-white: #EDDCD1;
 }
 
 * {
@@ -22,11 +23,10 @@ a {
 }
 
 a:hover {
-  color: #6494AA;
+  filter: brightness(0.8);
 }
 
 body {
-  /* background: #665544; */
   background: var(--light-blue);
   color: var(--off-white);
 }
