@@ -36,3 +36,18 @@
   height: 45vh;
   z-index: 2;
 }
+
+
+@media(max-width: 800px) {
+  .header {
+    gap: 8vw;
+  }
+
+  .header > h1 {
+    font-size: 20vw;
+  }
+
+  .lizard_container {
+    width: 70vw;
+  }
+}
