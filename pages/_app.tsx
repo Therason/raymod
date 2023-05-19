@@ -5,7 +5,8 @@ import Navbar from '@/components/navbar'
 import localFont from 'next/font/local'
 import { SessionProvider } from 'next-auth/react'
 
-const bender = localFont({ src: '../public/Bender_Bold.otf' })
+const benderBold = localFont({ src: '../public/Bender_Bold.otf' })
+const bender = localFont({ src: '../public/Bender.otf' })
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -16,9 +17,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={bender.className}>
-        <Navbar />
-        <Component className={bender.className} {...pageProps} />
+      <main className={benderBold.className}>
+        <span className={bender.className}><Navbar /></span>
+        <Component className={benderBold.className} {...pageProps} />
       </main>
     </SessionProvider>
   )
