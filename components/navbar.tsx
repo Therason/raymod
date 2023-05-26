@@ -12,7 +12,7 @@ export default function Navbar() {
   const {data: session} = useSession()
 
   useEffect(() => {
-    if (session) {
+    if (session && tabs[tabs.length - 1].name !== 'admin') {
       setTabs([
         ...tabs,
         {name: 'admin', href: '/admin'}
