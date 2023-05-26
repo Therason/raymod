@@ -1,18 +1,13 @@
 .main {
-  /* width: 90%;
-  height: auto; */
-  /* margin: 0 auto; */
   display: flex;
   justify-content: center;
   padding: 4rem 0;
   height: 100%;
   color: var(--fake-black);
-  /* min-height: 100vh; */
 }
 
 .container {
   display: flex;
-  /* justify-content: space-around; */
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;

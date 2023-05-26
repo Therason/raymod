@@ -1,3 +1,4 @@
+/* first section */
 .header_container {
   width: 100vw;
   height: 100vh;
@@ -37,7 +38,6 @@
   z-index: 2;
 }
 
-
 @media(max-width: 800px) {
   .header {
     gap: 8vw;
@@ -50,4 +50,11 @@
   .lizard_container {
     width: 70vw;
   }
+}
+
+/* second section */
+.about {
+  width: 100vw;
+  height: 100vh;
+  background: var(--offer-white);
 }

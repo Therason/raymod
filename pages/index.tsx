@@ -17,6 +17,7 @@ export default function Home() {
             <h1 style={{ zIndex: 1 }}>MODULE</h1>
           </div>
         </div>
+        <div className={styles.about}></div>
       </main>
     </>
   )
