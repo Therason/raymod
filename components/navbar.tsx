@@ -2,6 +2,7 @@ import Link from 'next/link'
 import styles from '@/styles/Navbar.module.css'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Navbar() {
   const [ tabs, setTabs ] = useState([
@@ -18,17 +19,21 @@ export default function Navbar() {
         {name: 'admin', href: '/admin'}
       ])
     }
+    // :^)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
+
+  const router = useRouter()
 
   return (
     <nav className={styles.container}>
       {tabs.map((tab) => 
-        <Link key={tab.name} href={tab.href}>
+        <Link key={tab.name} href={tab.href} className={styles.link}>
+          {router.pathname === tab.href && <div className={styles.pill}></div>}
           <span>{tab.name}</span>
         </Link>
       )}
-      {!session && <Link href="/hush/login">login</Link>}
+      {/* {!session && <Link href="/hush/login">login</Link>} */}
     </nav>
   )
 }
