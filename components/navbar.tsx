@@ -31,7 +31,12 @@ export default function Navbar() {
       {tabs.map((tab) => 
         <Link key={tab.name} href={tab.href} className={`${styles.link} ${router.pathname !== tab.href ? styles.unfocus : styles.focus }`}>
           {router.pathname === tab.href && 
-            <motion.div className={styles.pill} layoutId='pill' />
+            <motion.div  
+              className={styles.pill} 
+              layoutId='pill'
+              style={{ borderRadius: 9999 }}
+              transition={{ type: 'spring', duration: 0.6}}
+            />
           }
           <span>{tab.name}</span>
         </Link>

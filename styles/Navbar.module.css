@@ -19,13 +19,17 @@
 
 .link > span {
   position: relative;
+  z-index: 10;
 }
 
 .pill {
   position: absolute;
-  background: red;
+  background: var(--off-white);
   inset: 0;
-  border-radius: 9999px;
+}
+
+.focus {
+  color: var(--light-blue);
 }
 
 .unfocus:hover {
