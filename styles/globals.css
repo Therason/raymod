@@ -23,9 +23,9 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+/* a:hover {
   filter: brightness(0.8);
-}
+} */
 
 body {
   background: var(--light-blue);

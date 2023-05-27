@@ -3,6 +3,7 @@ import styles from '@/styles/Navbar.module.css'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 
 export default function Navbar() {
   const [ tabs, setTabs ] = useState([
@@ -28,8 +29,10 @@ export default function Navbar() {
   return (
     <nav className={styles.container}>
       {tabs.map((tab) => 
-        <Link key={tab.name} href={tab.href} className={styles.link}>
-          {router.pathname === tab.href && <div className={styles.pill}></div>}
+        <Link key={tab.name} href={tab.href} className={`${styles.link} ${router.pathname !== tab.href ? styles.unfocus : styles.focus }`}>
+          {router.pathname === tab.href && 
+            <motion.div className={styles.pill} layoutId='pill' />
+          }
           <span>{tab.name}</span>
         </Link>
       )}
