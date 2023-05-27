@@ -6,6 +6,16 @@
   place-items: center;
 }
 
+.header_container::before {
+  content: "";
+  position: absolute;
+  width: max(160vw, 120vh);
+  height: 80vh;
+  background: var(--light-blue);
+  border-radius: 50%;
+  bottom: -5vw;
+}
+
 .header {
   max-height: 70vh;
   display: flex;
@@ -57,4 +67,48 @@
   width: 100vw;
   height: 100vh;
   background: var(--offer-white);
+  display: grid;
+  grid-template-columns: 600px 1fr;
+  overflow: hidden;
+}
+
+.logo {
+  width: 600px;
+  height: 600px;
+  position: relative;
+  background-image: url('/artist.svg');
+  background-size: contain;
+}
+
+.logo > img {
+  position: absolute;
+  top: 200px;
+  left: 160px;
+}
+
+.infoContainer {
+  width: 100%;
+  text-align: end;
+  position: relative;
+}
+
+.infoContainer::before {
+  content: "";
+  width: 50vw;
+  height: 75vh;
+  background: var(--blood-red);
+  position: absolute;
+  border-radius: 50%;
+  bottom: -20vh;
+  right: -15vw;
+  box-shadow: 0 0 0 20px #E96B6B;
+}
+
+.info {
+  color: var(--off-white);
+  width: 25vw;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 1.2vw;
 }
