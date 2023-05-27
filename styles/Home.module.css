@@ -19,7 +19,7 @@
 .header::before {
   content: "";
   position: absolute;
-  width: 120vw;
+  width: max(120vw, 120vh);
   height: 80vh;
   background: var(--dark-blue);
   border-radius: 50%;

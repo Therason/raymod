@@ -17,7 +17,9 @@ export default function Home() {
             <h1 style={{ zIndex: 1 }}>MODULE</h1>
           </div>
         </div>
-        <div className={styles.about}></div>
+        <div className={styles.about}>
+          <Image src='/artist.svg' width='600' height='600' alt='artist & animator logo' />
+        </div>
       </main>
     </>
   )
