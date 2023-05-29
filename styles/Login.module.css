@@ -3,6 +3,7 @@
   display: grid;
   place-items: center;
   place-content: center;
+  color: var(--fake-black);
 }
 
 .container {

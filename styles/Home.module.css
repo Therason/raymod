@@ -9,7 +9,7 @@
 .header_container::before {
   content: "";
   position: absolute;
-  width: max(160vw, 120vh);
+  width: max(160vw, 1000px);
   height: 80vh;
   background: var(--light-blue);
   border-radius: 50%;
@@ -29,7 +29,7 @@
 .header::before {
   content: "";
   position: absolute;
-  width: max(120vw, 120vh);
+  width: max(120vw, 1000px);
   height: 80vh;
   background: var(--dark-blue);
   border-radius: 50%;
