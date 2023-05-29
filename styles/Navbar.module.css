@@ -41,5 +41,6 @@
   .container {
     font-size: 1rem;
     justify-content: center;
+    gap: 1rem;
   }
 }
