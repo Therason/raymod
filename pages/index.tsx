@@ -2,15 +2,13 @@ import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import localFont from 'next/font/local'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useEffect } from 'react'
-import { loadGetInitialProps } from 'next/dist/shared/lib/utils'
 
 const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const lizardY = useTransform(scrollYProgress, [0, 1], ['-50%', '0%'])
-  const logoRotation = useTransform(scrollYProgress, [0, 1], ['rotate(-90deg)', 'rotate(0deg)'])
+  const logoRotation = useTransform(scrollYProgress, [0, 1], ['rotate(-60deg)', 'rotate(0deg)'])
 
   return (
     <>
