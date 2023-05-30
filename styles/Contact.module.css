@@ -1,7 +1,27 @@
 .main {
   padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .logo {
-  fill: white;
+  width: 100px;
+  height: 100px;
+  fill: var(--light-blue);
+  background: var(--off-white);
+  padding: 1rem;
+  border-radius: 40px;
+  box-sizing: content-box;
+  transition: padding 0.4s ease-in-out;
+  display: inline-block;
+}
+
+.logo > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo:hover {
+  padding-right: calc(1rem + 200px);
 }
