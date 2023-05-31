@@ -17,7 +17,7 @@ export default function Home() {
           <div className={`${bilgres.className} ${styles.header}`}>
             <h1 style={{ zIndex: 3 }}>RAY</h1>
             <motion.div className={styles.lizard_container} style={{ y: lizardY }}>
-              <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} />
+              <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />
             </motion.div>
             <h1 style={{ zIndex: 1 }}>MODULE</h1>
           </div>
