@@ -1,10 +1,10 @@
 import styles from '@/styles/Contact.module.css'
-import { useMotionValue, useTransform, motion } from 'framer-motion'
+import { useMotionValue, useTransform, motion, easeInOut } from 'framer-motion'
 
 export default function Contact() {
   const x = useMotionValue(200)
   // probably breaks on resize?
-  const rotateY = useTransform(x, [0, window.innerWidth], [10, -10], {clamp: false})
+  const rotateY = useTransform(x, [0, window.innerWidth], [-15, 15], {clamp: false, ease: easeInOut})
 
   return (
     <main className={styles.main} onMouseMove={(e) => x.set(e.pageX)}>
