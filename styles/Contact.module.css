@@ -14,38 +14,43 @@
 }
 
 .logo {
-  width: 100px;
+  color: var(--fake-black);
   height: 100px;
-  fill: var(--light-blue);
-  background: var(--off-white);
+  fill: var(--off-white);
   padding: 1rem;
   border-radius: 40px;
   box-sizing: content-box;
-  transition: padding 0.4s ease-in-out;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
   position: absolute;
+  font-size: 4rem;
+  overflow: hidden;
+  background: var(--dark-blue);
+  border: 3px solid var(--fake-black);
 }
 
 .logo > svg {
-  width: 100%;
+  width: 100px;
   height: 100%;
-}
-
-.logo:hover {
-  padding-right: calc(1rem + 200px);
 }
 
 .twitter {
   top: 100px;
-  left: 100px;
+  left: 0;
+  transform: rotate(-5deg);
 }
 
 .tumblr {
   top: 400px;
-  left: 300px;
+  left: 20%;
+  background: var(--nice-yellow);
+  transform: rotate(7deg);
 }
 
 .email {
-  left: 600px;
-  top: 200px;
+  right: 0;
+  top: 250px;
+  background: var(--tomato);
+  transform: rotate(15deg);
 }
