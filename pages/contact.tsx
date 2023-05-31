@@ -1,10 +1,29 @@
 import styles from '@/styles/Contact.module.css'
 import { useMotionValue, useTransform, motion, easeInOut } from 'framer-motion'
+import { useState, useEffect } from 'react'
+
+// need a hook to detect the window width
+function useWindowWidth() {
+  const [ width, setWidth ] = useState(0)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+    setWidth(window.innerWidth)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return width
+}
 
 export default function Contact() {
   const x = useMotionValue(200)
-  // probably breaks on resize?
-  const rotateY = useTransform(x, [0, window.innerWidth], [-15, 15], {clamp: false, ease: easeInOut})
+  const windowWidth = useWindowWidth()
+  const rotateY = useTransform(x, [0, windowWidth], [-15, 15], {clamp: false, ease: easeInOut})
+
 
   return (
     <main className={styles.main} onMouseMove={(e) => x.set(e.pageX)}>
