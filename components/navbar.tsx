@@ -33,7 +33,7 @@ export default function Navbar() {
           key={tab.name}
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.6, type: 'spring', delay: i * 0.1 }}
+          transition={{ duration: 0.6, type: 'spring', delay: i * 0.1, stiffness: 100 }}
         >
           <Link         
             href={tab.href} 
@@ -52,7 +52,6 @@ export default function Navbar() {
           </Link>
         </motion.div>
       )}
-      {/* {!session && <Link href="/hush/login">login</Link>} */}
     </nav>
   )
 }

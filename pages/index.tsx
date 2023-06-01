@@ -9,12 +9,15 @@ export default function Home() {
   const { scrollYProgress } = useScroll()
   const lizardY = useTransform(scrollYProgress, [0, 1], ['-50%', '0%'])
   const logoRotation = useTransform(scrollYProgress, [0, 1], ['rotate(-60deg)', 'rotate(0deg)'])
+  const circleScale = useTransform(scrollYProgress, [0,1], [1, 0.5])
 
   return (
     <>
       <main className={styles.main}>
         <div className={styles.header_container}>
+          {/* <motion.div className={styles.lowerCircle} style={{ scale: circleScale }} /> */}
           <div className={`${bilgres.className} ${styles.header}`}>
+            <motion.div className={styles.circle} style={{ scale: circleScale }} />
             <h1 style={{ zIndex: 3 }}>RAY</h1>
             <motion.div className={styles.lizard_container} style={{ y: lizardY }}>
               <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />

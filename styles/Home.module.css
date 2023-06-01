@@ -1,3 +1,7 @@
+.main {
+  background: var(--offer-white);
+}
+
 /* first section */
 .header_container {
   width: 100vw;
@@ -7,15 +11,13 @@
   position: relative;
 }
 
-.header_container::before {
-  content: "";
+.lowerCircle {
   position: absolute;
   width: max(160vw, 1000px);
   height: 80vh;
   background: var(--light-blue);
   border-radius: 50%;
   bottom: -5vh;
-  box-shadow: 0 0 0 5vh var(--offer-white);
 }
 
 .header {
@@ -28,13 +30,14 @@
   position: relative;
 }
 
-.header::before {
-  content: "";
+.circle {
   position: absolute;
   width: max(120vw, 1000px);
   height: 80vh;
   background: var(--dark-blue);
   border-radius: 50%;
+  box-sizing: content-box;
+  border: 30vh solid var(--light-blue);
 }
 
 .header > h1 {
