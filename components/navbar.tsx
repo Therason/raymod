@@ -28,23 +28,29 @@ export default function Navbar() {
 
   return (
     <nav className={styles.container}>
-      {tabs.map((tab) => 
-        <Link 
-          key={tab.name} 
-          href={tab.href} 
-          className={`${styles.link} ${router.pathname !== tab.href ? styles.unfocus : styles.focus }`} 
-          onClick={(e) => (window as any).clickX = e.pageX}
+      {tabs.map((tab, i) => 
+        <motion.div 
+          key={tab.name}
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.6, type: 'spring', delay: i * 0.1 }}
         >
-          {router.pathname === tab.href && 
-            <motion.div  
-              className={styles.pill} 
-              layoutId='pill'
-              style={{ borderRadius: 9999 }}
-              transition={{ type: 'spring', duration: 0.6}}
-            />
-          }
-          <span>{tab.name}</span>
-        </Link>
+          <Link         
+            href={tab.href} 
+            className={`${styles.link} ${router.pathname !== tab.href ? styles.unfocus : styles.focus }`} 
+            onClick={(e) => (window as any).clickX = e.pageX}
+          >
+            {router.pathname === tab.href && 
+              <motion.div  
+                className={styles.pill} 
+                layoutId='pill'
+                style={{ borderRadius: 9999 }}
+                transition={{ type: 'spring', duration: 0.6}}
+              />
+            }
+            <span>{tab.name}</span>
+          </Link>
+        </motion.div>
       )}
       {/* {!session && <Link href="/hush/login">login</Link>} */}
     </nav>
