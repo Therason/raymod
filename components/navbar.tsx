@@ -33,7 +33,7 @@ export default function Navbar() {
           key={tab.name}
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.6, type: 'spring', delay: i * 0.1, stiffness: 100 }}
+          transition={{ duration: 0.6, type: 'spring', delay: 1 + (i * 0.1), stiffness: 100 }}
         >
           <Link         
             href={tab.href} 

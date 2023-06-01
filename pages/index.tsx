@@ -17,12 +17,32 @@ export default function Home() {
         <div className={styles.header_container}>
           {/* <motion.div className={styles.lowerCircle} style={{ scale: circleScale }} /> */}
           <div className={`${bilgres.className} ${styles.header}`}>
-            <motion.div className={styles.circle} style={{ scale: circleScale }} />
-            <h1 style={{ zIndex: 3 }}>RAY</h1>
+            <motion.div 
+              className={styles.circle} 
+              style={{ scale: circleScale }} 
+              initial={{ scale: 2 }}
+              animate={{ scale: 1}}
+              transition={{ duration: 1, delay: 0.5, type: 'spring' }}
+            />
+            <motion.h1 
+              style={{ zIndex: 3 }} 
+              initial={{ x: '-50vw '}} 
+              animate={{ x: 0 }}
+              transition={{ duration: 0.8, type: 'spring' }}
+            >
+              RAY
+            </motion.h1>
             <motion.div className={styles.lizard_container} style={{ y: lizardY }}>
               <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />
             </motion.div>
-            <h1 style={{ zIndex: 1 }}>MODULE</h1>
+            <motion.h1 
+              style={{ zIndex: 1 }}
+              initial={{ x: '100vw' }}
+              animate={{ x: 0 }}
+              transition={{ duration: 1, delay: 0.25, type: 'spring' }}
+            >
+              MODULE
+            </motion.h1>
           </div>
         </div>
         <div className={styles.about}>
