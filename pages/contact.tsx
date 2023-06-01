@@ -24,11 +24,13 @@ function useMouseX() {
   const x = useMotionValue(0)
 
   useEffect(() => {
-    const handleMouseMove = (e: any) => {
+    const handleMouseMove = (e: MouseEvent) => {
       x.set(e.pageX)
     }
-    document.addEventListener('mousemove', handleMouseMove)
 
+    document.addEventListener('mousemove', handleMouseMove)
+    // uhh...
+    x.set((window as any).clickX || 0)
     return () => window.removeEventListener('mousemove', handleMouseMove)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -41,7 +43,6 @@ export default function Contact() {
   const x = useMouseX()
   const windowWidth = useWindowWidth()
   const rotateY = useTransform(x, [0, windowWidth], [-15, 15], {clamp: false, ease: easeInOut})
-
 
   return (
     <main className={styles.main}>

@@ -29,7 +29,12 @@ export default function Navbar() {
   return (
     <nav className={styles.container}>
       {tabs.map((tab) => 
-        <Link key={tab.name} href={tab.href} className={`${styles.link} ${router.pathname !== tab.href ? styles.unfocus : styles.focus }`}>
+        <Link 
+          key={tab.name} 
+          href={tab.href} 
+          className={`${styles.link} ${router.pathname !== tab.href ? styles.unfocus : styles.focus }`} 
+          onClick={(e) => (window as any).clickX = e.pageX}
+        >
           {router.pathname === tab.href && 
             <motion.div  
               className={styles.pill} 
