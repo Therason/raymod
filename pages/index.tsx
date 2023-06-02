@@ -1,7 +1,7 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import localFont from 'next/font/local'
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
