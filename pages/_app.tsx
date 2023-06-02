@@ -23,10 +23,12 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <span className={bender.className}><Navbar /></span>
-      <AnimatePresence mode='wait' >
-        <Component key={pageKey} className={benderBold.className} {...pageProps} />
-      </AnimatePresence>
+      <div className={benderBold.className}>
+        <span className={bender.className}><Navbar /></span>
+        <AnimatePresence mode='wait' >
+          <Component key={pageKey} className={benderBold.className} {...pageProps} />
+        </AnimatePresence>
+      </div>
     </SessionProvider>
   )
 }
