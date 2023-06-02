@@ -1,7 +1,7 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import localFont from 'next/font/local'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 
 const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
@@ -20,9 +20,16 @@ export default function Home() {
               className={styles.circle} 
               style={{ scale: circleScale }} 
               initial={{ scale: 2 }}
-              animate={{ scale: 1}}
-              exit={{ scale: 0 }}
-              transition={{ duration: 0.6, delay: 0.6, type: 'spring' }}
+              animate={{ 
+                scale: 1,
+                transition: { duration: 0.6, delay: 0.6, type: 'spring' }
+              }}
+              exit={{ 
+                scale: 0, 
+                transition: {
+                  duration: 0.6,
+                } 
+              }}
             />
             <motion.h1 
               style={{ zIndex: 3 }} 
@@ -33,9 +40,16 @@ export default function Home() {
             >
               RAY
             </motion.h1>
-            <motion.div className={styles.lizard_container} style={{ y: lizardY }} exit={{ y: '-100vh' }}>
+            <motion.div 
+              className={styles.lizard_container} 
+              style={{ y: lizardY }} 
+              initial={{ y: '-100vh'}}
+              animate={{ y: '-50%' }}
+              exit={{ y: '-100vh' }}
+              key='lizard-container-div'
+            >
               <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />
-            </motion.div>
+              </motion.div>
             <motion.h1 
               style={{ zIndex: 1 }}
               initial={{ x: '100vw' }}
