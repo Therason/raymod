@@ -14,37 +14,39 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        <div className={styles.header_container}>
-          {/* <motion.div className={styles.lowerCircle} style={{ scale: circleScale }} /> */}
+        <motion.div className={styles.header_container} exit={{ background: '#62A8AC' }} transition={{ duration: 0 }}>
           <div className={`${bilgres.className} ${styles.header}`}>
             <motion.div 
               className={styles.circle} 
               style={{ scale: circleScale }} 
               initial={{ scale: 2 }}
               animate={{ scale: 1}}
-              transition={{ duration: 1, delay: 0.5, type: 'spring' }}
+              exit={{ scale: 0 }}
+              transition={{ duration: 0.6, delay: 0.6, type: 'spring' }}
             />
             <motion.h1 
               style={{ zIndex: 3 }} 
-              initial={{ x: '-50vw '}} 
+              initial={{ x: '-65vw'}} 
               animate={{ x: 0 }}
-              transition={{ duration: 0.8, type: 'spring' }}
+              exit={{ x: '65vw' }}
+              transition={{ duration: 0.8, type: 'spring', delay: 0.2 }}
             >
               RAY
             </motion.h1>
-            <motion.div className={styles.lizard_container} style={{ y: lizardY }}>
+            <motion.div className={styles.lizard_container} style={{ y: lizardY }} exit={{ y: '-100vh' }}>
               <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />
             </motion.div>
             <motion.h1 
               style={{ zIndex: 1 }}
               initial={{ x: '100vw' }}
               animate={{ x: 0 }}
-              transition={{ duration: 1, delay: 0.25, type: 'spring' }}
+              exit={{ x: '-75vw' }}
+              transition={{ duration: 1, delay: 0.45, type: 'spring' }}
             >
               MODULE
             </motion.h1>
           </div>
-        </div>
+        </motion.div>
         <div className={styles.about}>
           <div className={styles.logoContainer}>
             <motion.img 
