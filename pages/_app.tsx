@@ -21,7 +21,6 @@ const routeChange = () => {
   }
   fix()
 }
-
 Router.events.on('routeChangeComplete', routeChange)
 Router.events.on('routeChangeStart', routeChange)
 
@@ -32,7 +31,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
 
   useEffect(() => {
     router.push(router.pathname)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

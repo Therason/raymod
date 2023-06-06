@@ -26,9 +26,8 @@ export default function Home() {
               className={styles.circle} 
               style={{ scale: circleScale }} 
               initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              transition={{ duration: 1, type: 'spring' }}
+              animate={{ scale: 1, transition: { duration: 1, type: 'spring' } }}
+              exit={{ scale: 0, transition: { duration: 0.4, type: 'linear' }  }}
             />
             <motion.h1 
               style={{ zIndex: 3 }} 
