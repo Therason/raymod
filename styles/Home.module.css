@@ -9,6 +9,7 @@
   display: grid;
   place-items: center;
   position: relative;
+  background: var(--light-blue);
 }
 
 .lowerCircle {

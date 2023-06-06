@@ -14,16 +14,21 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        <motion.div className={styles.header_container} transition={{ duration: 0 }}>
+        {/* background needs to change and stuff */}
+        <motion.div 
+          className={styles.header_container}
+          animate={{ background: '#EDDCD1', transition: { delay: 1 } }}
+          exit={{ background: '#62A8AC' }}
+          transition={{ duration: 0 }}
+        >
           <div className={`${bilgres.className} ${styles.header}`}>
             <motion.div 
               className={styles.circle} 
               style={{ scale: circleScale }} 
-              initial={{ scale: 2 }}
-              animate={{ 
-                scale: 1,
-                transition: { duration: 0.6, delay: 0.6, type: 'spring' }
-              }}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+              transition={{ duration: 1, type: 'spring' }}
             />
             <motion.h1 
               style={{ zIndex: 3 }} 
@@ -39,6 +44,7 @@ export default function Home() {
               style={{ y: lizardY }} 
               initial={{ y: '-100vh'}}
               animate={{ y: '-50%' }}
+              exit={{ y: '-100vh' }}
               key='lizard-container-div'
             >
               <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />
@@ -47,7 +53,8 @@ export default function Home() {
               style={{ zIndex: 1 }}
               initial={{ x: '100vw' }}
               animate={{ x: 0 }}
-              transition={{ duration: 1, delay: 0.45, type: 'spring' }}
+              exit={{ x: '100vw' }}
+              transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
             >
               MODULE
             </motion.h1>
