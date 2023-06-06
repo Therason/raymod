@@ -1,12 +1,13 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import localFont from 'next/font/local'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import styled from 'styled-components'
 
 const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
 // styled components 0.o
+// TODO: MEDIA QUERIES!!! or something idk how it works
 const HeaderContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -48,15 +49,6 @@ const LizardContainer = styled.div`
   z-index: 2;
 `
 
-const About = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: var(--offer-white);
-  display: grid;
-  /* grid-template-columns: 600px 1fr; */
-  overflow: hidden;
-`
-
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const lizardY = useTransform(scrollYProgress, [0, 1], ['-50%', '0%'])
@@ -65,18 +57,25 @@ export default function Home() {
 
   return (
     <>
-      <main className={styles.main}>
+      <main className={`${styles.main}`}>
         <HeaderContainer>
-          <Header className={`${bilgres.className}`}>
+          {/* font class gets lost on page transition... */}
+          <Header className={bilgres.className}>
             <Circle />
-            <h1 style={{ zIndex: 3 }}>RAY</h1>
+            <motion.h1 
+              style={{ zIndex: 3 }}
+              initial={{ x: '-200% '}}
+              animate={{ x: 0 }}
+              exit={{ x: '200%' }}
+              transition={{ duration: 0.8, type: 'spring', delay: 0.2 }}
+            >RAY</motion.h1>
             <LizardContainer>
               <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />
             </LizardContainer>
             <h1 style={{ zIndex: 1 }}>MODULE</h1>
           </Header>
         </HeaderContainer>
-        <About>
+        <div className={styles.about}>
           <div className={styles.logoContainer}>
             <motion.img 
               className={styles.logoSvg} 
@@ -90,7 +89,7 @@ export default function Home() {
           <div className={styles.infoContainer}>
             <p className={styles.info}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
-        </About>
+        </div>
       </main>
     </>
   )

@@ -25,7 +25,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       </Head>
       <div className={benderBold.className}>
         <span className={bender.className}><Navbar /></span>
-        <Component key={pageKey} className={benderBold.className} {...pageProps} />
+        <AnimatePresence mode='wait'>
+          <Component key={pageKey} className={benderBold.className} {...pageProps} />
+        </AnimatePresence>
       </div>
     </SessionProvider>
   )

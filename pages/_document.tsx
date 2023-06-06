@@ -1,6 +1,7 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
+// all this to get SSR for styled components :^)
 function MyDocument() {
   return (
     <Html lang="en">
