@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 
 const benderBold = localFont({ src: '../public/Bender_Bold.otf' })
 const bender = localFont({ src: '../public/Bender.otf' })
+const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   // page components need unique keys for AnimatePresence to work
@@ -26,7 +27,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <div className={benderBold.className}>
         <span className={bender.className}><Navbar /></span>
         <AnimatePresence mode='wait'>
-          <Component key={pageKey} className={benderBold.className} {...pageProps} />
+          {/* AnimatePresence messes up a ton of styles :( */}
+          <Component key={pageKey} className={pageKey === '/' ? bilgres.className : benderBold.className} {...pageProps} />
         </AnimatePresence>
       </div>
     </SessionProvider>

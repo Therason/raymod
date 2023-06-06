@@ -1,10 +1,7 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
-import localFont from 'next/font/local'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import styled from 'styled-components'
-
-const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
 // styled components 0.o
 // TODO: MEDIA QUERIES!!! or something idk how it works
@@ -60,7 +57,7 @@ export default function Home() {
       <main className={`${styles.main}`}>
         <HeaderContainer>
           {/* font class gets lost on page transition... */}
-          <Header className={bilgres.className}>
+          <Header>
             <Circle />
             <motion.h1 
               style={{ zIndex: 3 }}
