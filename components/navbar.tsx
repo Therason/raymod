@@ -31,9 +31,9 @@ export default function Navbar() {
       {tabs.map((tab, i) => 
         <motion.div 
           key={tab.name}
-          initial={{ y: -100 }}
+          initial={router.asPath === '/' ? { y: -100 } : false}
           animate={{ y: 0 }}
-          transition={{ duration: 0.6, type: 'spring', delay: 1 + (i * 0.1), stiffness: 100 }}
+          transition={{ duration: 0.6, type: 'spring', delay: 0.6 + (i * 0.1), stiffness: 100 }}
         >
           <Link         
             href={tab.href} 
