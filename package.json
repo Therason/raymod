@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "@types/formidable": "^2.0.5",
-    "@types/react-beautiful-dnd": "^13.1.4"
+    "@types/react-beautiful-dnd": "^13.1.4",
+    "@types/styled-components": "^5.1.26",
+    "styled-components": "^5.3.10"
   }
 }
