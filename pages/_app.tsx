@@ -5,16 +5,35 @@ import Navbar from '@/components/navbar'
 import localFont from 'next/font/local'
 import { SessionProvider } from 'next-auth/react'
 import { AnimatePresence } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { useRouter, Router } from 'next/router'
+import { useEffect } from 'react'
 
 const benderBold = localFont({ src: '../public/Bender_Bold.otf' })
 const bender = localFont({ src: '../public/Bender.otf' })
-const bilgres = localFont({ src: '../public/Bilgres.otf' })
+
+// https://github.com/vercel/next.js/issues/17464#issuecomment-914561683
+const routeChange = () => {
+  const fix = () => {
+    const allStyleElems = document.querySelectorAll('style[media="x"]')
+    allStyleElems.forEach(el => {
+      el.removeAttribute('media')
+    })
+  }
+  fix()
+}
+
+Router.events.on('routeChangeComplete', routeChange)
+Router.events.on('routeChangeStart', routeChange)
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   // page components need unique keys for AnimatePresence to work
   const router = useRouter()
   const pageKey = router.asPath
+
+  useEffect(() => {
+    router.push(router.pathname)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <SessionProvider session={session}>
@@ -27,8 +46,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <div className={benderBold.className}>
         <span className={bender.className}><Navbar /></span>
         <AnimatePresence mode='wait'>
-          {/* AnimatePresence messes up a ton of styles :( */}
-          <Component key={pageKey} className={pageKey === '/' ? bilgres.className : benderBold.className} {...pageProps} />
+          <Component key={pageKey} className={benderBold.className} {...pageProps} />
         </AnimatePresence>
       </div>
     </SessionProvider>

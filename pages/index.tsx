@@ -1,50 +1,9 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
+import localFont from 'next/font/local'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import styled from 'styled-components'
 
-// styled components 0.o
-// TODO: MEDIA QUERIES!!! or something idk how it works
-const HeaderContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  position: relative;
-`
-
-const Header = styled.div`
-  max-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5vw;
-  position: relative;
-
-  h1 {
-    font-size: 10vw;
-  }
-`
-
-const Circle = styled.div`
-  position: absolute;
-  width: max(120vw, 1000px);
-  height: 80vh;
-  background: var(--dark-blue);
-  border-radius: 50%;
-  box-sizing: content-box;
-  border: 30vh solid var(--light-blue);
-`
-
-const LizardContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translate(0%,-50%);
-  width: 50vw;
-  height: 45vh;
-  z-index: 2;
-`
+const bilgres = localFont({ src: '../public/Bilgres.otf' })
 
 export default function Home() {
   const { scrollYProgress } = useScroll()
@@ -54,24 +13,46 @@ export default function Home() {
 
   return (
     <>
-      <main className={`${styles.main}`}>
-        <HeaderContainer>
-          {/* font class gets lost on page transition... */}
-          <Header>
-            <Circle />
+      <main className={styles.main}>
+        <motion.div className={styles.header_container} transition={{ duration: 0 }}>
+          <div className={`${bilgres.className} ${styles.header}`}>
+            <motion.div 
+              className={styles.circle} 
+              style={{ scale: circleScale }} 
+              initial={{ scale: 2 }}
+              animate={{ 
+                scale: 1,
+                transition: { duration: 0.6, delay: 0.6, type: 'spring' }
+              }}
+            />
             <motion.h1 
-              style={{ zIndex: 3 }}
-              initial={{ x: '-200% '}}
+              style={{ zIndex: 3 }} 
+              initial={{ x: '-65vw'}} 
               animate={{ x: 0 }}
-              exit={{ x: '200%' }}
+              exit={{ x: '-65vw' }}
               transition={{ duration: 0.8, type: 'spring', delay: 0.2 }}
-            >RAY</motion.h1>
-            <LizardContainer>
+            >
+              RAY
+            </motion.h1>
+            <motion.div 
+              className={styles.lizard_container} 
+              style={{ y: lizardY }} 
+              initial={{ y: '-100vh'}}
+              animate={{ y: '-50%' }}
+              key='lizard-container-div'
+            >
               <Image alt='lizard lady drawing' src='/lizard.png' fill style={{ objectFit: 'contain' }} priority />
-            </LizardContainer>
-            <h1 style={{ zIndex: 1 }}>MODULE</h1>
-          </Header>
-        </HeaderContainer>
+              </motion.div>
+            <motion.h1 
+              style={{ zIndex: 1 }}
+              initial={{ x: '100vw' }}
+              animate={{ x: 0 }}
+              transition={{ duration: 1, delay: 0.45, type: 'spring' }}
+            >
+              MODULE
+            </motion.h1>
+          </div>
+        </motion.div>
         <div className={styles.about}>
           <div className={styles.logoContainer}>
             <motion.img 
