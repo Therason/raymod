@@ -1,19 +1,33 @@
 import connect from '@/lib/db'
 import styles from '@/styles/Gallery.module.css'
 import BigWindow from '@/components/bigWindow'
+import { motion } from 'framer-motion'
+
+const variants = {
+  hidden: { 
+    transition: {
+      staggerChildren: 0.1,
+    }
+  },
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    }
+  }
+}
 
 // TODO: better typing :(
 export default function Gallery({ images }: any) {
   return (
     <>
       <main className={styles.main}>
-        <div className={styles.container}>
+        <motion.div className={styles.container} variants={variants} initial='hidden' animate='show' exit='hidden'>
           {images.map((image: any) => {
             return (
               <BigWindow image={image} key={image._id}/>
             )
           })}
-        </div>
+        </motion.div>
       </main>
     </>
   )

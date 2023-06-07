@@ -1,10 +1,25 @@
 import styles from '@/styles/BigWindow.module.css'
 import Image from 'next/image'
 import CloseIcon from './closeIcon'
+import { motion } from 'framer-motion'
+
+const variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.7,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring'
+    }
+  }
+}
 
 export default function BigWindow({image}: {image: any}) {
   return (
-    <div className={`border ${styles.container}`}>
+    <motion.div className={`border ${styles.container}`} variants={variants}>
       <span className={styles.bar}>
         <CloseIcon handleClick={() => {}} background='#eddcd1' />
       </span>
@@ -16,6 +31,6 @@ export default function BigWindow({image}: {image: any}) {
           <p>{image.description}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
