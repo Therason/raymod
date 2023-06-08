@@ -1,10 +1,10 @@
 .container {
   display: inline-flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: clamp(0.5rem, 1vw, 2rem);
   width: 100%;
   padding: 1rem 30%;
-  font-size: 1.5rem;
+  font-size: clamp(0.75rem, 2vw, 1.5rem);
   position: absolute;
   top: 0;
   left: 0;
@@ -15,12 +15,13 @@
 .link {
   position: relative;
   color: #fff1e8;
-  padding: 0.25em 0.75em;
+  padding: 0.25rem 1.5rem;
+  display: block;
 }
 
-.link > span {
-  position: relative;
+.name {
   z-index: 10;
+  position: relative;
 }
 
 .pill {
@@ -37,10 +38,9 @@
   color: #ddcabe;
 }
 
-@media(max-width: 800px) {
+@media(max-width: 700px) {
   .container {
-    font-size: 1rem;
-    justify-content: center;
+    justify-content: space-around;
     gap: 1rem;
   }
 }

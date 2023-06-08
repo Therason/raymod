@@ -48,7 +48,7 @@ export default function Navbar() {
                 transition={{ type: 'spring', duration: 0.6}}
               />
             }
-            <span>{tab.name}</span>
+            <span className={styles.name}>{tab.name}</span>
           </Link>
         </motion.div>
       )}
