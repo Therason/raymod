@@ -35,6 +35,7 @@ export default function App({
 
   useEffect(() => {
     router.push(router.pathname)
+
     const lenis = new Lenis()
     lenis.on('scroll', (e: any) => {
       console.log(e)
